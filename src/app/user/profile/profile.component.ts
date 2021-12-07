@@ -4,11 +4,11 @@ import {UserService} from "../services/user.service";
 import {User} from "../data/User";
 
 @Component({
-    selector: 'app-profil',
-    templateUrl: './profil.component.html',
-    styleUrls: ['./profil.component.css']
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css']
 })
-export class ProfilComponent implements OnInit {
+export class ProfileComponent implements OnInit {
     user!: User;
 
     constructor(

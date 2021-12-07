@@ -15,7 +15,7 @@ import {AuthService} from "../../shared/services/auth.service";
 })
 export class UserFormComponent implements OnInit {
     @Input() user!: User | null;
-    @Input() profil!: boolean;
+    @Input() profile!: boolean;
     userForm: FormGroup;
     roles = Object.values(Role);
     isAdmin = false;
@@ -84,30 +84,8 @@ export class UserFormComponent implements OnInit {
             username: this.usernameCtrl,
             email: this.emailCtrl,
             company: this.companyCtrl,
-            address: fb.group({
-                address: this.addressCtrl,
-                address_details: this.address_detailsCtrl,
-                postal_code: this.postal_codeCtrl,
-                city: this.cityCtrl,
-            }),
-            delivery_address: fb.group({
-                address: this.delivery_addressCtrl,
-                address_details: this.delivery_address_detailsCtrl,
-                postal_code: this.delivery_postal_codeCtrl,
-                city: this.delivery_cityCtrl,
-            }),
             tel: this.telCtrl,
-            reseller: this.resellerCtrl,
-            producer: this.producerCtrl,
-            collecte_point: this.collecte_pointCtrl,
-            heavy_truck: this.heavy_truckCtrl,
-            delivery_data: this.delivery_dataCtrl,
-            delivery_schedules: this.delivery_schedulesCtrl,
-            stacker: this.stackerCtrl,
-            forklift: this.forkliftCtrl,
-            pallet_truck: this.pallet_truckCtrl,
             role: this.roleCtrl,
-            internal_data: this.internal_dataCtrl
         });
     }
 
@@ -122,30 +100,8 @@ export class UserFormComponent implements OnInit {
                 username: this.user.username,
                 email: this.user.email,
                 company: this.user.company,
-                address: {
-                    address: this.user.address ? this.user.address.address : '',
-                    address_details: this.user.address ? this.user.address.address_details : '',
-                    postal_code: this.user.address ? this.user.address.postal_code : '',
-                    city: this.user.address ? this.user.address.city : ''
-                },
-                delivery_address: {
-                    address: this.user.delivery_address ? this.user.delivery_address.address : '',
-                    address_details: this.user.delivery_address ? this.user.delivery_address.address_details : '',
-                    postal_code: this.user.delivery_address ? this.user.delivery_address.postal_code : '',
-                    city: this.user.delivery_address ? this.user.delivery_address.city : ''
-                },
                 tel: this.user.tel,
-                reseller: this.user.reseller,
-                producer: this.user.producer,
-                collecte_point: this.user.collecte_point,
-                heavy_truck: this.user.heavy_truck,
-                delivery_data: this.user.delivery_data,
-                delivery_schedules: this.user.delivery_schedules,
-                stacker: this.user.stacker,
-                forklift: this.user.forklift,
-                pallet_truck: this.user.pallet_truck,
-                role: this.user.role,
-                internal_data: this.user.internal_data
+                role: this.user.role
             })
         }
     }
@@ -171,7 +127,7 @@ export class UserFormComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if (this.profil && this.user) {
+        if (this.profile && this.user) {
             this.userService.editMe(this.userForm.value).subscribe({
                 next: () => {
                     this.toastr.success('Votre profil a été Modifié', 'Modifier');

@@ -6,7 +6,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 import { ContactComponent } from "./pages/contact/contact.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 import { Role } from "./user/data/Role";
-import { ProfilComponent } from "./user/profil/profil.component";
+import { ProfileComponent } from "./user/profile/profile.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 const routes: Routes = [
@@ -41,7 +41,7 @@ const routes: Routes = [
     {
         path: 'me',
         canActivate: [LoggedInGuardService],
-        component: ProfilComponent
+        component: ProfileComponent
     },
     {
         path: 'not-found',

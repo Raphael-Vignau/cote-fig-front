@@ -150,10 +150,6 @@ export class UserListComponent implements OnInit, AfterViewInit {
     exportAllUsers() {
         this.userService.getUsersExport().subscribe(
             (users: User[]) => {
-                users.map(user => {
-                    user.address_export = user.address.address + ' ' + user.address.address_details + ' ' + user.address.postal_code + ' ' + user.address.city;
-                    user.delivery_address_export = user.delivery_address.address + ' ' + user.delivery_address.address_details + ' ' + user.delivery_address.postal_code + ' ' + user.delivery_address.city;
-                })
                 new AngularCsv(users, 'export', this.exportCsvOptions)
             }
         )

@@ -20,23 +20,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {UserService} from "./services/user.service";
 import {UserRoutingModule} from "./user-routing.module";
 import {MatSelectModule} from "@angular/material/select";
-import {ProfilComponent} from './profil/profil.component';
+import {ProfileComponent} from './profile/profile.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatDividerModule} from "@angular/material/divider";
 import {UserFormComponent} from './user-form/user-form.component';
-import {PassageModule} from "../passage/passage.module";
-import {UserWaitingPassageComponent} from './user-waiting-passage/user-waiting-passage.component';
-import {MaterialModule} from "../material/material.module";
-import {OrderModule} from "../order/order.module";
 
 @NgModule({
     declarations: [
         UserAddComponent,
         UserListComponent,
         UserEditComponent,
-        ProfilComponent,
+        ProfileComponent,
         UserFormComponent,
-        UserWaitingPassageComponent
     ],
     imports: [
         CommonModule,
@@ -57,13 +52,10 @@ import {OrderModule} from "../order/order.module";
         MatBadgeModule,
         MatSelectModule,
         MatSlideToggleModule,
-        MatDividerModule,
-        PassageModule,
-        MaterialModule,
-        OrderModule
+        MatDividerModule
     ],
     providers: [UserService],
-    exports: [ProfilComponent]
+    exports: [ProfileComponent]
 })
 export class UserModule {
 }

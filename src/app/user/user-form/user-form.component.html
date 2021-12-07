@@ -120,10 +120,10 @@
                                    id="tel">
                         </mat-form-field>
 
-                        <div *ngIf="!profil" class="mat-card-subtitle">
+                        <div *ngIf="!profile" class="mat-card-subtitle">
                             <h3>Informations de connexion</h3>
                         </div>
-                        <mat-form-field appearance="standard" *ngIf="!profil">
+                        <mat-form-field appearance="standard" *ngIf="!profile">
                             <mat-label>Rôle</mat-label>
                             <mat-select formControlName="role"
                                         (selectionChange)="onChangeRole($event)"
@@ -224,7 +224,7 @@
                                       id="delivery_data"></textarea>
                         </mat-form-field>
 
-                        <mat-form-field *ngIf="!profil"
+                        <mat-form-field *ngIf="!profile"
                                         appearance="standard"
                                         color="accent">
                             <mat-label for="internal_data">Informations interne ( visible uniquement pour les admin )

@@ -1,0 +1,74 @@
+<mat-toolbar>
+    <img routerLink="/"
+        src="assets/img/logo.png"
+        alt="Logo Oc'Consigne">
+
+    <span class="spacer"></span>
+
+    <button mat-fab
+        color="primary"
+        class="m-lg-2"
+        [routerLink]="['']"
+        aria-label="icon-button">
+        <mat-icon>home</mat-icon>
+    </button>
+
+    <button mat-fab
+        color="primary"
+        class="m-lg-2"
+        [routerLink]="['contact']"
+        *ngIf="!roleAdmin"
+        aria-label="icon-button">
+        <mat-icon>mail</mat-icon>
+    </button>
+
+    <button mat-fab
+        color="primary"
+        *ngIf="roleAdmin"
+        [matMenuTriggerFor]="menuAdmin"
+        aria-label="icon-button">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #menuAdmin="matMenu">
+        <button mat-menu-item
+            *ngIf="roleAdmin"
+            [routerLink]="['user']">
+            <mat-icon color="accent">people</mat-icon>
+            <span>Utilisateurs</span>
+        </button>
+        <button mat-menu-item
+            *ngIf="roleAdmin"
+            [routerLink]="['figurine']">
+            <mat-icon color="accent">smart_toy</mat-icon>
+            <span>Figurine</span>
+        </button>
+    </mat-menu>
+
+    <button mat-fab
+        color="primary"
+        class="m-lg-2"
+        [matMenuTriggerFor]="menuAccount"
+        aria-label="icon-button">
+        <mat-icon>perm_identity</mat-icon>
+    </button>
+    <mat-menu #menuAccount="matMenu">
+        <button mat-menu-item
+            *ngIf="!logged"
+            [routerLink]="['auth/login']">
+            <mat-icon color="accent">login</mat-icon>
+            <span>Connexion</span>
+        </button>
+        <button mat-menu-item
+            *ngIf="logged"
+            [routerLink]="['me']">
+            <mat-icon color="accent">manage_accounts</mat-icon>
+            <span>Profil</span>
+        </button>
+        <button mat-menu-item
+            *ngIf="logged"
+            (click)="logout()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span>Déconnexion</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

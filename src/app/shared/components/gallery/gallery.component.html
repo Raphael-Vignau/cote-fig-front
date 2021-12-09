@@ -1,0 +1,13 @@
+<ngx-masonry>
+    <mat-card ngxMasonryItem class="masonry-item m-2" *ngFor="let fig of figurines">
+        <img mat-card-image src="{{this.authUrl + '/figurines/file/' + fig.img_name}}" alt="Photo of {{fig.name}}">
+        <mat-card-title>{{fig.name}}</mat-card-title>
+        <mat-card-content>
+            <p>{{fig.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>Je le cherche</button>
+            <button mat-button>Je l'ai</button>
+        </mat-card-actions>
+    </mat-card>
+</ngx-masonry>

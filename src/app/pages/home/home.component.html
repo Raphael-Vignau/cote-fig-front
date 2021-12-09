@@ -1,20 +1,21 @@
-<div class="row ">
-    <div class="col-md-8 offset-md-2 mt-4">
-        <h1>Bienvenue dans votre espace</h1>
-        <div *ngIf="!logged">
-            Pour afficher votre tableau de bord merci de vous identifier ou de nous contacter pour vous inscrire.
-            <div>
-                <button mat-menu-item
-                    [routerLink]="['auth/login']">
-                    <mat-icon color="accent">login</mat-icon>
-                    <span>Connexion</span>
-                </button>
-                <button mat-menu-item
-                    [routerLink]="['contact']">
-                    <mat-icon color="primary">mail</mat-icon>
-                    <span>Nous contacter</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="row ">-->
+<!--    <div class="col-md-8 offset-md-2 mt-4">-->
+<!--        <h1>Bienvenue dans votre espace</h1>-->
+<!--        <div *ngIf="!logged">-->
+<!--            Pour afficher votre tableau de bord merci de vous identifier ou de nous contacter pour vous inscrire.-->
+<!--            <div>-->
+<!--                <button mat-menu-item-->
+<!--                    [routerLink]="['auth/login']">-->
+<!--                    <mat-icon color="accent">login</mat-icon>-->
+<!--                    <span>Connexion</span>-->
+<!--                </button>-->
+<!--                <button mat-menu-item-->
+<!--                    [routerLink]="['contact']">-->
+<!--                    <mat-icon color="primary">mail</mat-icon>-->
+<!--                    <span>Nous contacter</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<app-gallery></app-gallery>

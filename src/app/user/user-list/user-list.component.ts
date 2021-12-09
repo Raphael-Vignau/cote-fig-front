@@ -9,8 +9,6 @@ import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 import Swal from "sweetalert2";
 import {UserStatus} from "../data/user.status";
-import {AngularCsv} from 'angular-csv-ext/dist/Angular-csv';
-import {User} from "../data/User";
 import {Role} from "../data/Role";
 import {AuthService} from "../../shared/services/auth.service";
 
@@ -21,15 +19,10 @@ import {AuthService} from "../../shared/services/auth.service";
 })
 export class UserListComponent implements OnInit, AfterViewInit {
     users!: UsersDataSource;
-    displayedColumns: string[] = ['status', 'company', 'username', 'email', 'tel', 'reseller', 'city', 'actions'];
+    displayedColumns: string[] = ['status', 'username', 'email', 'actions'];
     totalUsers: number = 0;
     userStatus = UserStatus;
     Role = Role;
-
-    exportCsvOptions = {
-        useHeader: true,
-        headers: ['company', 'username', 'email', 'tel', 'status', 'reseller', 'producer', 'address_export', 'delivery_address_export'],
-    }
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
@@ -143,14 +136,6 @@ export class UserListComponent implements OnInit, AfterViewInit {
                         }
                     })
                 }
-            }
-        )
-    }
-
-    exportAllUsers() {
-        this.userService.getUsersExport().subscribe(
-            (users: User[]) => {
-                new AngularCsv(users, 'export', this.exportCsvOptions)
             }
         )
     }

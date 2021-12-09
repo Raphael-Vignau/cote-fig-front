@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 pt-2">
-            <h3 i18n="@@FigurineList.title">Liste des types de bouteille</h3>
+            <h3 i18n="@@FigurineList.title">Liste des figurines</h3>
 
             <div>
                 <label for="searchInput">
                     <input matInput
                         id="searchInput"
                         i18n-placeholder="@@FigurineList.findFigurine.placeholder"
-                        placeholder="Rechercher un type de bouteille"
+                        placeholder="Rechercher une figurine"
                         #input>
                 </label>
             </div>
@@ -29,16 +29,6 @@
                         *matCellDef="let figurine"> {{figurine.name}} </mat-cell>
                 </ng-container>
 
-                <!-- Code Column -->
-                <ng-container matColumnDef="code">
-                    <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@FigurineAttributes.code"> Code
-                    </mat-header-cell>
-                    <mat-cell mat-cell
-                        *matCellDef="let figurine"> {{figurine.code}} </mat-cell>
-                </ng-container>
-
                 <!-- Price Column -->
                 <ng-container matColumnDef="price">
                     <mat-header-cell *matHeaderCellDef
@@ -49,28 +39,6 @@
                         *matCellDef="let figurine"> {{figurine.price | currency:'EUR':true}} </mat-cell>
                 </ng-container>
 
-                <!-- internal_stock Column -->
-                <ng-container matColumnDef="internal_stock">
-                    <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@FigurineAttributes.internal_stock"> Propre (bouteille/palette)
-                    </mat-header-cell>
-                    <mat-cell mat-cell
-                        *matCellDef="let figurine"> {{figurine.internal_stock}}
-                        / {{makeNbrPalette(figurine)}}</mat-cell>
-                </ng-container>
-
-                <!-- internal_stock_dirty Column -->
-                <ng-container matColumnDef="internal_stock_dirty">
-                    <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@FigurineAttributes.internal_stock_dirty"> Sale (bouteille/palette)
-                    </mat-header-cell>
-                    <mat-cell mat-cell
-                        *matCellDef="let figurine"> {{figurine.internal_stock_dirty}}
-                        / {{makeNbrPalette(figurine, true)}}</mat-cell>
-                </ng-container>
-
                 <!-- Actions Column -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef
@@ -78,20 +46,6 @@
                         i18n="@@FigurineAttributes.actions"> Actions
                     </mat-header-cell>
                     <mat-cell *matCellDef="let figurine">
-                        <button mat-mini-fab
-                            (click)="addFigurines(figurine)"
-                            title="Ajouter des bouteilles propres"
-                            class="m-lg-2"
-                            color="primary">
-                            <mat-icon>add_circle</mat-icon>
-                        </button>
-                        <button mat-mini-fab
-                            (click)="addDirtyFigurines(figurine)"
-                            title="Ajouter des bouteilles sales"
-                            class="m-lg-2"
-                            color="accent">
-                            <mat-icon>add_circle</mat-icon>
-                        </button>
                         <button mat-mini-fab
                             (click)="editFigurine(figurine.id)"
                             title="Détails"
@@ -128,12 +82,7 @@
                     class="m-lg-2"
                     color="primary"
                     routerLink="/figurine/add">
-                    <span i18n="@@FigurineList.button.addFigurine">Ajouter un type de bouteille</span>
-                </button>
-                <button mat-raised-button
-                    color="primary"
-                    (click)="exportAllFigurines()">
-                    <span i18n="@@FigurineList.button.exportFigurines">Exporter les bouteilles</span>
+                    <span i18n="@@FigurineList.button.addFigurine">Ajouter un model de figurine</span>
                 </button>
             </div>
 

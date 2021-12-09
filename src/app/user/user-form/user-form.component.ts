@@ -21,28 +21,9 @@ export class UserFormComponent implements OnInit {
     isAdmin = false;
 
     usernameCtrl: FormControl;
-    companyCtrl!: FormControl;
     telCtrl!: FormControl;
     emailCtrl: FormControl;
     roleCtrl: FormControl;
-    resellerCtrl: FormControl;
-    producerCtrl: FormControl;
-    collecte_pointCtrl: FormControl;
-    addressCtrl!: FormControl;
-    address_detailsCtrl!: FormControl;
-    postal_codeCtrl!: FormControl;
-    cityCtrl!: FormControl;
-    delivery_addressCtrl: FormControl;
-    delivery_address_detailsCtrl: FormControl;
-    delivery_postal_codeCtrl: FormControl;
-    delivery_cityCtrl: FormControl;
-    delivery_dataCtrl: FormControl;
-    delivery_schedulesCtrl: FormControl;
-    heavy_truckCtrl: FormControl;
-    stackerCtrl: FormControl;
-    forkliftCtrl: FormControl;
-    pallet_truckCtrl: FormControl;
-    internal_dataCtrl: FormControl;
 
     constructor(
         private fb: FormBuilder,
@@ -54,36 +35,12 @@ export class UserFormComponent implements OnInit {
     ) {
         this.usernameCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
         this.emailCtrl = fb.control('', [Validators.required, Validators.email]);
-        this.companyCtrl = fb.control('');
         this.telCtrl = fb.control('');
-        this.resellerCtrl = fb.control(false);
-        this.producerCtrl = fb.control(false);
-        this.collecte_pointCtrl = fb.control(false);
         this.roleCtrl = fb.control('user', [Validators.required]);
-
-        this.addressCtrl = fb.control('');
-        this.address_detailsCtrl = fb.control('');
-        this.postal_codeCtrl = fb.control('');
-        this.cityCtrl = fb.control('');
-
-        this.delivery_addressCtrl = fb.control('');
-        this.delivery_address_detailsCtrl = fb.control('');
-        this.delivery_postal_codeCtrl = fb.control('');
-        this.delivery_cityCtrl = fb.control('');
-
-        this.delivery_dataCtrl = fb.control('');
-        this.delivery_schedulesCtrl = fb.control('');
-        this.heavy_truckCtrl = fb.control(false);
-        this.stackerCtrl = fb.control(false);
-        this.forkliftCtrl = fb.control(false);
-        this.pallet_truckCtrl = fb.control(false);
-
-        this.internal_dataCtrl = fb.control('');
 
         this.userForm = fb.group({
             username: this.usernameCtrl,
             email: this.emailCtrl,
-            company: this.companyCtrl,
             tel: this.telCtrl,
             role: this.roleCtrl,
         });
@@ -99,7 +56,6 @@ export class UserFormComponent implements OnInit {
             this.userForm.setValue({
                 username: this.user.username,
                 email: this.user.email,
-                company: this.user.company,
                 tel: this.user.tel,
                 role: this.user.role
             })

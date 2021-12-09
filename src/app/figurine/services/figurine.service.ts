@@ -64,21 +64,16 @@ export class FigurineService {
     makeFormData(figurine: Figurine): FormData {
         const formData = new FormData();
         formData.append('name', figurine.name);
-        formData.append('code', figurine.code);
         formData.append('description', figurine.description);
+        formData.append('publisher', figurine.publisher);
+        formData.append('artist', figurine.artist);
         formData.append('price', String(figurine.price));
-        formData.append('nbr_by_palette', String(figurine.nbr_by_palette));
-        formData.append('internal_stock', String(figurine.internal_stock));
-        formData.append('internal_stock_dirty', String(figurine.internal_stock_dirty));
+        formData.append('rating', String(figurine.rating));
+        formData.append('year', String(figurine.year));
         formData.append('img_figurine', figurine.img_figurine);
         // For delete old img
         if (figurine.img_name) {
             formData.append('img_name', figurine.img_name);
-        }
-        formData.append('pdf_figurine', figurine.pdf_figurine);
-        // For delete old img
-        if (figurine.pdf_name) {
-            formData.append('pdf_name', figurine.pdf_name);
         }
         return formData
     }

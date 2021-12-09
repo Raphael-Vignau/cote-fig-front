@@ -20,19 +20,15 @@ export class FigurineFormComponent implements OnInit {
     figurineForm: FormGroup;
     figurine!: Figurine;
     readonly maxSize: number = 104857600;
-    readonly maxSizePdf: number = 104857600;
-    nbrPalette: number = 0;
-    nbrPaletteDirty: number = 0;
 
     nameCtrl: FormControl;
-    codeCtrl: FormControl;
     descriptionCtrl: FormControl;
+    artistCtrl: FormControl;
+    publisherCtrl: FormControl;
     priceCtrl: FormControl;
+    ratingCtrl: FormControl;
+    yearCtrl: FormControl;
     img_figurineCtrl: FormControl;
-    pdf_figurineCtrl: FormControl;
-    nbr_by_paletteCtrl: FormControl;
-    internal_stockCtrl: FormControl;
-    internal_stock_dirtyCtrl: FormControl;
 
     constructor(
         private fb: FormBuilder,
@@ -42,25 +38,23 @@ export class FigurineFormComponent implements OnInit {
         public router: Router
     ) {
         this.nameCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
-        this.codeCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
-        this.descriptionCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
-        this.priceCtrl = fb.control('', [Validators.required]);
+        this.descriptionCtrl = fb.control('', Validators.maxLength(300));
+        this.artistCtrl = fb.control('', Validators.maxLength(60));
+        this.publisherCtrl = fb.control('', Validators.maxLength(60));
+        this.priceCtrl = fb.control('', [Validators.maxLength(10)]);
+        this.ratingCtrl = fb.control('', [Validators.maxLength(10)]);
+        this.yearCtrl = fb.control('', [Validators.maxLength(4)]);
         this.img_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSize)]);
-        this.pdf_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSizePdf)]);
-        this.nbr_by_paletteCtrl = fb.control('', Validators.required);
-        this.internal_stockCtrl = fb.control('', Validators.required);
-        this.internal_stock_dirtyCtrl = fb.control('', Validators.required);
 
         this.figurineForm = fb.group({
             name: this.nameCtrl,
-            code: this.codeCtrl,
             description: this.descriptionCtrl,
+            publisher: this.publisherCtrl,
+            artist: this.artistCtrl,
             price: this.priceCtrl,
-            nbr_by_palette: this.nbr_by_paletteCtrl,
-            internal_stock: this.internal_stockCtrl,
-            internal_stock_dirty: this.internal_stock_dirtyCtrl,
-            img_figurine: this.img_figurineCtrl,
-            pdf_figurine: this.pdf_figurineCtrl
+            rating: this.ratingCtrl,
+            year: this.yearCtrl,
+            img_figurine: this.img_figurineCtrl
         }, {
             validator: imageFile('img_figurine')
         } as AbstractControlOptions);
@@ -78,7 +72,6 @@ export class FigurineFormComponent implements OnInit {
             next: (figurine: Figurine) => {
                 this.figurine = figurine;
                 this.setFormValue();
-                this.getPalettes()
             },
             error: () => {
                 this.router.navigate(['/not-found']).then()
@@ -89,14 +82,13 @@ export class FigurineFormComponent implements OnInit {
     setFormValue() {
         this.figurineForm.setValue({
             name: this.figurine.name,
-            code: this.figurine.code,
             description: this.figurine.description,
+            publisher: this.figurine.publisher,
+            artist: this.figurine.artist,
             price: this.figurine.price,
-            nbr_by_palette: this.figurine.nbr_by_palette,
-            internal_stock: this.figurine.internal_stock,
-            internal_stock_dirty: this.figurine.internal_stock_dirty,
-            img_figurine: '',
-            pdf_figurine: ''
+            rating: this.figurine.rating,
+            year: this.figurine.year,
+            img_figurine: ''
         })
     }
 
@@ -112,35 +104,12 @@ export class FigurineFormComponent implements OnInit {
         )
     }
 
-    getPalettes() {
-        this.nbrPalette = Math.floor(this.figurine.internal_stock / this.figurine.nbr_by_palette);
-        this.nbrPalette = isNaN(this.nbrPalette) ? 0 : this.nbrPalette;
-
-        this.nbrPaletteDirty = Math.floor(this.figurine.internal_stock_dirty / this.figurine.nbr_by_palette);
-        this.nbrPaletteDirty = isNaN(this.nbrPaletteDirty) ? 0 : this.nbrPaletteDirty;
-    }
-
-    onChangePalettes() {
-        this.nbrPalette = Math.floor(this.figurineForm.value.internal_stock / this.figurineForm.value.nbr_by_palette);
-        this.nbrPalette = isNaN(this.nbrPalette) ? 0 : this.nbrPalette;
-
-        this.nbrPaletteDirty = Math.floor(this.figurineForm.value.internal_stock_dirty / this.figurineForm.value.nbr_by_palette);
-        this.nbrPaletteDirty = isNaN(this.nbrPaletteDirty) ? 0 : this.nbrPaletteDirty;
-    }
-
     onSubmit(): void {
         if (this.figurineForm.value.img_figurine && this.figurineForm.value.img_figurine._files) {
             this.figurineForm.value.img_figurine = this.figurineForm.value.img_figurine._files[0]
             // For delete old img
             if (this.figurine && this.figurine.img_name) {
                 this.figurineForm.value.img_name = this.figurine.img_name
-            }
-        }
-        if (this.figurineForm.value.pdf_figurine && this.figurineForm.value.pdf_figurine._files) {
-            this.figurineForm.value.pdf_figurine = this.figurineForm.value.pdf_figurine._files[0]
-            // For delete old pdf
-            if (this.figurine && this.figurine.pdf_name) {
-                this.figurineForm.value.pdf_name = this.figurine.pdf_name
             }
         }
         if (this.idFigurine) {

@@ -7,13 +7,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {GalleryComponent} from './components/gallery/gallery.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
+import {NgxMasonryModule} from "ngx-masonry";
 
 @NgModule({
     declarations: [
         HeaderComponent,
         NotFoundComponent,
-        FooterComponent
+        FooterComponent,
+        GalleryComponent
     ],
     imports: [
         CommonModule,
@@ -21,11 +26,15 @@ import { FooterComponent } from './components/footer/footer.component';
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatGridListModule,
+        MatCardModule,
+        NgxMasonryModule
     ],
     exports: [
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        GalleryComponent
     ]
 })
 export class SharedModule {

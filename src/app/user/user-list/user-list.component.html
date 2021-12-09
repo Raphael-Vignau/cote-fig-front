@@ -34,16 +34,6 @@
                     </mat-cell>
                 </ng-container>
 
-                <!-- Company Column -->
-                <ng-container matColumnDef="company">
-                    <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@UserAttributes.company"> Société
-                    </mat-header-cell>
-                    <mat-cell mat-cell
-                        *matCellDef="let user"> {{user.company}} </mat-cell>
-                </ng-container>
-
                 <!-- Username Column -->
                 <ng-container matColumnDef="username">
                     <mat-header-cell *matHeaderCellDef
@@ -72,20 +62,6 @@
                     </mat-header-cell>
                     <mat-cell mat-cell
                         *matCellDef="let user"> {{user.tel}} </mat-cell>
-                </ng-container>
-
-                <!-- Reseller Column -->
-                <ng-container matColumnDef="reseller">
-                    <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@UserAttributes.reseller"> Magasin / Producteur / Point de collecte
-                    </mat-header-cell>
-                    <mat-cell mat-cell
-                        *matCellDef="let user">
-                        <mat-icon color="primary">{{user.reseller ? 'done' : 'close'}}</mat-icon> /
-                        <mat-icon color="primary">{{user.producer ? 'done' : 'close'}}</mat-icon> /
-                        <mat-icon color="primary">{{user.collecte_point ? 'done' : 'close'}}</mat-icon>
-                    </mat-cell>
                 </ng-container>
 
                 <!-- City Column -->
@@ -151,11 +127,6 @@
                     color="primary"
                     routerLink="/user/add">
                     <span i18n="@@UserList.button.addUser">Ajouter un utilisateur</span>
-                </button>
-                <button mat-raised-button
-                    color="primary"
-                    (click)="exportAllUsers()">
-                    <span i18n="@@FigurineList.button.exportFigurines">Exporter les Clients</span>
                 </button>
             </div>
         </div>

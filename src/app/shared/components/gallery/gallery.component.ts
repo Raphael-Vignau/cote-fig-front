@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FigurineService} from "../../../figurine/services/figurine.service";
 import {Figurine} from "../../../figurine/data/Figurine";
 import {environment} from "../../../../environments/environment";
+import {NgxMasonryOptions} from "ngx-masonry";
 
 @Component({
     selector: 'app-gallery',
@@ -11,6 +12,15 @@ import {environment} from "../../../../environments/environment";
 export class GalleryComponent implements OnInit {
     figurines: Figurine[] = [];
     authUrl = environment.api_base_url;
+    public masonryOptions: NgxMasonryOptions = {
+        columnWidth: '.masonry-item',
+        itemSelector: '.masonry-item',
+        fitWidth: true,
+        gutter: 10,
+        resize: true,
+        initLayout: true,
+        horizontalOrder: true
+    };
 
     constructor(
         private figurineService: FigurineService,
@@ -22,7 +32,7 @@ export class GalleryComponent implements OnInit {
     }
 
     getFigurines() {
-        this.figurineService.getFigurines().subscribe(
+        this.figurineService.getFigurinesForHome().subscribe(
             figurines => {
                 this.figurines = figurines
             },

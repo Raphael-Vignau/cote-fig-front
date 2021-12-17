@@ -1,3 +1,8 @@
-.masonry-item {
-    max-width: 300px;
+.grid-sizer, .masonry-item {
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+ngx-masonry {
+    margin: 0 auto;
 }

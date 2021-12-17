@@ -49,6 +49,21 @@ export class FigurineService {
         );
     }
 
+    getFigurinesForHome(sortBy?: string, sortDirection?: string, pageNumber?: number, pageSize?: number): Observable<Figurine[]> {
+        let params = new HttpParams()
+            .set('_sort', sortBy ? sortBy : 'createdAt')
+            .set('_direction', sortDirection ? sortDirection : 'DESC')
+            .set('_start', pageNumber && pageSize ? (pageNumber * pageSize).toString() : '0')
+            .set('_limit', pageSize ? pageSize.toString() : '20');
+        const options = {
+            params
+        };
+
+        return this.http.get(this.authUrl + '/figurines', options).pipe(
+            map((res: any) => res)
+        );
+    }
+
     getFigurinesExport(): Observable<Figurine[]> {
         return this.http.get(this.authUrl + '/figurines/export').pipe(
             map((res: any) => res)
@@ -67,6 +82,9 @@ export class FigurineService {
         formData.append('description', figurine.description);
         formData.append('publisher', figurine.publisher);
         formData.append('artist', figurine.artist);
+        formData.append('game', figurine.game);
+        formData.append('material', figurine.material);
+        formData.append('scale', figurine.scale);
         formData.append('price', String(figurine.price));
         formData.append('rating', String(figurine.rating));
         formData.append('year', String(figurine.year));
@@ -93,7 +111,7 @@ export class FigurineService {
     deleteFigurine(idFigurine: string): Observable<void> {
         return this.http.delete(`${this.authUrl}/figurines/${idFigurine}`).pipe(
             map(() => {
-                console.log('Type de bouteille supprimé');
+                console.log('figurine supprimée');
             })
         )
     }

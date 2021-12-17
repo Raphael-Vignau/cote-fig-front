@@ -24,6 +24,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatDividerModule} from "@angular/material/divider";
 import {UserFormComponent} from './user-form/user-form.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import {UserFormComponent} from './user-form/user-form.component';
         MatBadgeModule,
         MatSelectModule,
         MatSlideToggleModule,
-        MatDividerModule
+        MatDividerModule,
+        MatToolbarModule
     ],
     providers: [UserService],
     exports: [ProfileComponent]

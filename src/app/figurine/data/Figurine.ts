@@ -5,6 +5,9 @@ export interface Figurine {
     publisher: string;
     year: number;
     artist: string;
+    game: string;
+    material: string;
+    scale: string;
     price: number;
     rating: number;
 

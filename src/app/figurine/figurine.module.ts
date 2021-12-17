@@ -17,6 +17,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaterialFileInputModule } from "ngx-material-file-input";
 import { FigurineFormComponent } from './figurine-form/figurine-form.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
 	declarations: [
@@ -25,21 +26,22 @@ import { FigurineFormComponent } from './figurine-form/figurine-form.component';
 		FigurineEditComponent,
 		FigurineFormComponent
 	],
-	imports: [
-		CommonModule,
-		FigurineRoutingModule,
-		MatTableModule,
-		MatSortModule,
-		MatInputModule,
-		MatIconModule,
-		MatMenuModule,
-		MatButtonModule,
-		MatPaginatorModule,
-		MatProgressBarModule,
-		MatSelectModule,
-		ReactiveFormsModule,
-		MaterialFileInputModule
-	],
+    imports: [
+        CommonModule,
+        FigurineRoutingModule,
+        MatTableModule,
+        MatSortModule,
+        MatInputModule,
+        MatIconModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MaterialFileInputModule,
+        MatToolbarModule
+    ],
 	providers: [
 		FigurineService
 	]

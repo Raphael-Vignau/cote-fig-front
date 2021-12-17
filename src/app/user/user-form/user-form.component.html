@@ -1,17 +1,13 @@
 <div class="row">
-    <div class="pt-2" [ngClass]="isAdmin ? 'col-md-6' : 'col-md-12'">
+    <div class="pt-2 col-md-6">
         <div class="mat-card p-4">
             <div class="row">
-                <div class="pt-2" [ngClass]="isAdmin ? 'col-md-12' : 'col-md-6'">
+                <div class="pt-2 col-md-12">
                     <form [formGroup]="userForm"
                           (ngSubmit)="onSubmit()">
-                        <div class="mat-card-subtitle">
-                            <h3>Informations générales</h3>
-                        </div>
 
-                        <mat-form-field appearance="standard"
-                                        color="accent">
-                            <mat-label for="userName">Nom de l'utilisateur</mat-label>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Nom de l'utilisateur</mat-label>
                             <input matInput
                                    formControlName="username"
                                    id="userName"
@@ -25,9 +21,8 @@
                             </mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="standard"
-                                        color="accent">
-                            <mat-label for="userEmail">Email</mat-label>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Email</mat-label>
                             <input matInput
                                    formControlName="email"
                                    id="userEmail"
@@ -41,9 +36,6 @@
                             </mat-error>
                         </mat-form-field>
 
-                        <div *ngIf="!profile" class="mat-card-subtitle">
-                            <h3>Informations de connexion</h3>
-                        </div>
                         <mat-form-field appearance="standard" *ngIf="!profile">
                             <mat-label>Rôle</mat-label>
                             <mat-select formControlName="role"
@@ -59,9 +51,6 @@
                             </mat-error>
                         </mat-form-field>
                     </form>
-                </div>
-                <div class="col-md-6 pt-2" *ngIf="!isAdmin">
-
                 </div>
             </div>
             <div class="mat-card-actions">

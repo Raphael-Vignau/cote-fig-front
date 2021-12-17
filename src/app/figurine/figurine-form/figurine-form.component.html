@@ -1,17 +1,15 @@
 <div class="row">
-    <h2>Ajouter un model de figurine</h2>
     <div class="pt-2"
-        [ngClass]="classFigurine">
+         [ngClass]="classFigurine">
         <form [formGroup]="figurineForm"
-            (ngSubmit)="onSubmit()">
+              (ngSubmit)="onSubmit()">
 
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="name">Nom</mat-label>
+            <mat-form-field appearance="standard">
+                <mat-label>Nom</mat-label>
                 <input matInput
-                    formControlName="name"
-                    id="name"
-                    placeholder="nom">
+                       formControlName="name"
+                       id="name"
+                       placeholder="nom">
                 <mat-error *ngIf="nameCtrl.touched && nameCtrl.hasError('required')">
                     Le nom est requis
                 </mat-error>
@@ -20,86 +18,101 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="description">Description</mat-label>
+            <mat-form-field appearance="standard">
+                <mat-label>Description</mat-label>
                 <input matInput
-                    name="description"
-                    formControlName="description"
-                    id="description">
+                       name="description"
+                       formControlName="description"
+                       id="description">
                 <mat-error *ngIf="descriptionCtrl.touched && descriptionCtrl.hasError('maxlength')">
-                    La description doit faire au maximum 300 caractères
+                    Ce champ ne doit pas faire plus de 300 caractères
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="publisher">Éditeur</mat-label>
+            <mat-form-field appearance="standard">
+                <mat-label>Éditeur</mat-label>
                 <input matInput
-                    name="publisher"
-                    formControlName="publisher"
-                    id="publisher">
+                       name="publisher"
+                       formControlName="publisher"
+                       id="publisher">
                 <mat-error *ngIf="publisherCtrl.touched && publisherCtrl.hasError('maxlength')">
-                    L'éditeur doit faire au maximum 60 caractères
+                    Ce champ ne doit pas faire plus de 60 caractères
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="artist">Artiste</mat-label>
+            <mat-form-field appearance="standard">
+                <mat-label>Artiste</mat-label>
                 <input matInput
-                    name="artist"
-                    formControlName="artist"
-                    id="artist">
+                       name="artist"
+                       formControlName="artist">
+                <mat-hint>sculteur, designer...</mat-hint>
                 <mat-error *ngIf="artistCtrl.touched && artistCtrl.hasError('maxlength')">
-                    L'artiste doit faire au maximum 60 caractères
+                    Ce champ ne doit pas faire plus de 60 caractères
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="price">Prix</mat-label>
+            <mat-form-field appearance="standard">
+                <mat-label>Jeu</mat-label>
                 <input matInput
-                    type="number"
-                    formControlName="price"
-                    id="price">
+                       name="game"
+                       formControlName="game">
+                <mat-error *ngIf="artistCtrl.touched && artistCtrl.hasError('maxlength')">
+                    Ce champ ne doit pas faire plus de 60 caractères
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+                <mat-label>Matière</mat-label>
+                <input matInput
+                       name="material"
+                       formControlName="material">
+                <mat-error *ngIf="artistCtrl.touched && artistCtrl.hasError('maxlength')">
+                    Ce champ ne doit pas faire plus de 60 caractères
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+                <mat-label>Échelle</mat-label>
+                <input matInput
+                       name="scale"
+                       formControlName="scale">
+                <mat-hint>28mm, 32mm...</mat-hint>
+                <mat-error *ngIf="artistCtrl.touched && artistCtrl.hasError('maxlength')">
+                    Ce champ ne doit pas faire plus de 60 caractères
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+                <mat-label>Prix à la sortie</mat-label>
+                <input matInput
+                       type="number"
+                       formControlName="price"
+                       id="price">
                 <mat-error *ngIf="priceCtrl.touched && priceCtrl.hasError('maxLength')">
                     Le prix doit faire au maximum 10 caractères
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="rating">Cote</mat-label>
+                            color="accent">
+                <mat-label>Année de sortie</mat-label>
                 <input matInput
-                    type="number"
-                    formControlName="rating"
-                    id="rating">
-                <mat-error *ngIf="ratingCtrl.touched && ratingCtrl.hasError('maxLength')">
-                    La cote doit faire au maximum 10 caractères
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="standard"
-                color="accent">
-                <mat-label for="year">Année de sortie</mat-label>
-                <input matInput
-                    type="number"
-                    formControlName="year"
-                    id="year">
+                       type="number"
+                       formControlName="year"
+                       id="year">
                 <mat-error *ngIf="yearCtrl.touched && yearCtrl.hasError('maxLength')">
                     L'année de sortie doit faire au maximum 4 caractères
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="standard"
-                color="accent">
+            <mat-form-field appearance="outline" class="mt-2">
+                <mat-label>Image de la figurine</mat-label>
                 <ngx-mat-file-input formControlName="img_figurine"
-                    [accept]="'.png, .jpg, .jpeg'"
-                    placeholder="Image de la bouteille"
-                    valuePlaceholder="{{this.figurine && this.figurine.img_original_name ? this.figurine.img_original_name : 'Image de la bouteille ( PNG ou JPG ou JPEG)'}}">
+                                    [accept]="'.png, .jpg, .jpeg'"
+                                    valuePlaceholder="{{this.figurine && this.figurine.img_original_name ? this.figurine.img_original_name : null}}">
                 </ngx-mat-file-input>
-                <mat-icon matSuffix>folder</mat-icon>
+                <mat-icon matSuffix color="accent">folder</mat-icon>
+                <mat-hint>PNG ou JPG ou JPEG</mat-hint>
                 <mat-error *ngIf="img_figurineCtrl.touched && img_figurineCtrl.hasError('maxContentSize')">
                     La taille du fichier ne doit pas
                     dépasser {{img_figurineCtrl?.getError('maxContentSize').maxSize | byteFormat}}
@@ -113,25 +126,25 @@
 
             <div class="flex-row pt-2">
                 <button mat-raised-button
-                    color="warn"
-                    class="m-lg-2"
-                    type="button"
-                    routerLink="/figurine"
-                    i18n="FigurineAdd.button.cancel">Annuler
+                        color="warn"
+                        class="m-lg-2"
+                        type="button"
+                        routerLink="/figurine"
+                        i18n="FigurineAdd.button.cancel">Annuler
                 </button>
                 <button mat-raised-button
-                    color="primary"
-                    type="submit"
-                    [disabled]="figurineForm.invalid || !figurineForm.dirty"
-                    i18n="FigurineAdd.button.submit">Enregistrer
+                        color="primary"
+                        type="submit"
+                        [disabled]="figurineForm.invalid || !figurineForm.dirty"
+                        i18n="FigurineAdd.button.submit">Enregistrer
                 </button>
             </div>
         </form>
     </div>
     <div class="col-md-6 pt-2"
-        *ngIf="figurine && figurine.img_name">
+         *ngIf="figurine && figurine.img_name">
         <img class="img-fluid"
-            src="{{this.authUrl + '/figurines/file/' + this.figurine.img_name}}"
-            alt="Image bouteille">
+             src="{{this.authUrl + '/figurines/file/' + this.figurine.img_name}}"
+             alt="Image figurine">
     </div>
 </div>

@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 })
 export class FigurineListComponent implements OnInit, AfterViewInit {
     figurines!: FigurinesDataSource;
-    displayedColumns: string[] = ['name', 'price', 'actions'];
+    displayedColumns: string[] = ['name', 'publisher', 'game', 'material', 'year', 'actions'];
     totalFigurines: number = 0;
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -84,9 +84,9 @@ export class FigurineListComponent implements OnInit, AfterViewInit {
 
     deleteFigurine(idFigurine: string): void {
         Swal.fire({
-            title: `Supprimer le type de bouteille`,
+            title: `Supprimer la figurine`,
             icon: 'warning',
-            text: 'Êtes-vous sûr de vouloir supprimer ce type de bouteille ?',
+            text: 'Êtes-vous sûr de vouloir supprimer cette figurine ?',
             showConfirmButton: true,
             confirmButtonText: 'Supprimer',
             showCancelButton: true,
@@ -98,7 +98,7 @@ export class FigurineListComponent implements OnInit, AfterViewInit {
                         next: () => {
                             this.loadFigurinesPage();
                             this.countAllFigurines();
-                            this.toastr.success('Le type de bouteille a été supprimé', 'Supprimer');
+                            this.toastr.success('La figurine a été supprimé', 'Supprimer');
                         },
                         error: (err) => {
                             this.errorSubmit(err)

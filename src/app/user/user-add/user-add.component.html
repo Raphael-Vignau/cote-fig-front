@@ -1,5 +1,16 @@
-<div class="container">
+<mat-toolbar color="primary">
     <h2>Ajouter un nouvelle utilisateur</h2>
+
+    <span class="spacer"></span>
+
+    <button mat-stroked-button
+            class="m-lg-2"
+            routerLink="/user"
+            aria-label="icon-button">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="container">
     <app-user-form [user]="null"
                    [profile]="false"></app-user-form>
 </div>

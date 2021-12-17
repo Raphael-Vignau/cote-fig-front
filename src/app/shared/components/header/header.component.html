@@ -1,69 +1,65 @@
 <mat-toolbar color="primary">
-<!--    <img routerLink="/"-->
-<!--        src="assets/logo.png"-->
-<!--        alt="Logo">-->
     <button mat-stroked-button
             class="m-lg-2"
             [routerLink]="['']"
             aria-label="icon-button">
-        <mat-icon>home</mat-icon> Cote-Fig
+        <img alt="logo-cote-fig" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8E%B2%3C%2Ftext%3E%3C%2Fsvg%3E">
+        <h1>COTE-FIG</h1>
     </button>
 
     <span class="spacer"></span>
 
-
-
     <button mat-stroked-button
-        class="m-lg-2"
-        [routerLink]="['contact']"
-        *ngIf="!roleAdmin"
-        aria-label="icon-button">
+            class="m-lg-2"
+            [routerLink]="['contact']"
+            *ngIf="!roleAdmin"
+            aria-label="icon-button">
         <mat-icon>mail</mat-icon>
     </button>
 
     <button mat-stroked-button
-        *ngIf="roleAdmin"
-        [matMenuTriggerFor]="menuAdmin"
-        aria-label="icon-button">
+            *ngIf="roleAdmin"
+            [matMenuTriggerFor]="menuAdmin"
+            aria-label="icon-button">
         <mat-icon>settings</mat-icon>
     </button>
     <mat-menu #menuAdmin="matMenu">
         <button mat-menu-item
-            *ngIf="roleAdmin"
-            [routerLink]="['user']">
+                *ngIf="roleAdmin"
+                [routerLink]="['user']">
             <mat-icon color="accent">people</mat-icon>
             <span>Utilisateurs</span>
         </button>
         <button mat-menu-item
-            *ngIf="roleAdmin"
-            [routerLink]="['figurine']">
+                *ngIf="roleAdmin"
+                [routerLink]="['figurine']">
             <mat-icon color="accent">smart_toy</mat-icon>
             <span>Figurine</span>
         </button>
     </mat-menu>
 
     <button mat-stroked-button
-        class="m-lg-2"
-        [matMenuTriggerFor]="menuAccount"
-        aria-label="icon-button">
+            class="m-lg-2"
+            [matMenuTriggerFor]="menuAccount"
+            aria-label="icon-button">
         <mat-icon>perm_identity</mat-icon>
     </button>
     <mat-menu #menuAccount="matMenu">
         <button mat-menu-item
-            *ngIf="!logged"
-            [routerLink]="['auth/login']">
+                *ngIf="!logged"
+                [routerLink]="['auth/login']">
             <mat-icon color="accent">login</mat-icon>
             <span>Connexion</span>
         </button>
         <button mat-menu-item
-            *ngIf="logged"
-            [routerLink]="['me']">
+                *ngIf="logged"
+                [routerLink]="['me']">
             <mat-icon color="accent">manage_accounts</mat-icon>
             <span>Profil</span>
         </button>
         <button mat-menu-item
-            *ngIf="logged"
-            (click)="logout()">
+                *ngIf="logged"
+                (click)="logout()">
             <mat-icon color="warn">logout</mat-icon>
             <span>Déconnexion</span>
         </button>

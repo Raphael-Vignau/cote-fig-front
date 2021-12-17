@@ -1,10 +1,20 @@
+<mat-toolbar color="primary">
+    <h2 i18n="@@UserList.title">Liste des utilisateurs</h2>
+
+    <span class="spacer"></span>
+
+    <button mat-stroked-button
+            class="m-lg-2"
+            routerLink="/user/add"
+            aria-label="icon-button">
+        <mat-icon>add_circle_outline</mat-icon>
+    </button>
+</mat-toolbar>
 <div class="container">
     <div class="row">
         <div class="col-md-12 pt-2">
-            <h3 i18n="@@UserList.title">Liste des utilisateurs</h3>
-
             <div>
-                <label for="searchInput">
+                <label for="searchInput" class="mb-2 mt-2">
                     <input matInput
                         id="searchInput"
                         i18n-placeholder="@@UserList.findUser.placeholder"
@@ -22,7 +32,7 @@
                 <!-- Status Column -->
                 <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="status"
                         i18n="@@UserAttributes.status"> Statut
                     </mat-header-cell>
                     <mat-cell mat-cell
@@ -37,7 +47,7 @@
                 <!-- Username Column -->
                 <ng-container matColumnDef="username">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="username"
                         i18n="@@UserAttributes.username"> Nom
                     </mat-header-cell>
                     <mat-cell mat-cell
@@ -47,7 +57,7 @@
                 <!-- Email Column -->
                 <ng-container matColumnDef="email">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="email"
                         i18n="@@UserAttributes.email"> Email
                     </mat-header-cell>
                     <mat-cell mat-cell
@@ -57,7 +67,7 @@
                 <!-- Tel Column -->
                 <ng-container matColumnDef="tel">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="tel"
                         i18n="@@UserAttributes.tel"> Téléphone
                     </mat-header-cell>
                     <mat-cell mat-cell
@@ -67,7 +77,7 @@
                 <!-- City Column -->
                 <ng-container matColumnDef="city">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="city"
                         i18n="@@UserAttributes.city"> Ville
                     </mat-header-cell>
                     <mat-cell mat-cell

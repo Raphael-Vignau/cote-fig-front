@@ -24,9 +24,11 @@ export class FigurineFormComponent implements OnInit {
     nameCtrl: FormControl;
     descriptionCtrl: FormControl;
     artistCtrl: FormControl;
+    gameCtrl: FormControl;
+    materialCtrl: FormControl;
+    scaleCtrl: FormControl;
     publisherCtrl: FormControl;
     priceCtrl: FormControl;
-    ratingCtrl: FormControl;
     yearCtrl: FormControl;
     img_figurineCtrl: FormControl;
 
@@ -40,9 +42,11 @@ export class FigurineFormComponent implements OnInit {
         this.nameCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
         this.descriptionCtrl = fb.control('', Validators.maxLength(300));
         this.artistCtrl = fb.control('', Validators.maxLength(60));
+        this.gameCtrl = fb.control('', Validators.maxLength(60));
+        this.materialCtrl = fb.control('', Validators.maxLength(60));
+        this.scaleCtrl = fb.control('', Validators.maxLength(60));
         this.publisherCtrl = fb.control('', Validators.maxLength(60));
         this.priceCtrl = fb.control('', [Validators.maxLength(10)]);
-        this.ratingCtrl = fb.control('', [Validators.maxLength(10)]);
         this.yearCtrl = fb.control('', [Validators.maxLength(4)]);
         this.img_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSize)]);
 
@@ -51,8 +55,10 @@ export class FigurineFormComponent implements OnInit {
             description: this.descriptionCtrl,
             publisher: this.publisherCtrl,
             artist: this.artistCtrl,
+            game: this.gameCtrl,
+            material: this.materialCtrl,
+            scale: this.scaleCtrl,
             price: this.priceCtrl,
-            rating: this.ratingCtrl,
             year: this.yearCtrl,
             img_figurine: this.img_figurineCtrl
         }, {
@@ -82,11 +88,13 @@ export class FigurineFormComponent implements OnInit {
     setFormValue() {
         this.figurineForm.setValue({
             name: this.figurine.name,
-            description: this.figurine.description,
-            publisher: this.figurine.publisher,
-            artist: this.figurine.artist,
+            description: this.figurine.description ? this.figurine.description : '',
+            publisher: this.figurine.publisher ? this.figurine.publisher : '',
+            artist: this.figurine.artist ? this.figurine.artist : '',
+            game: this.figurine?.game ? this.figurine.game : '',
+            material: this.figurine?.material ? this.figurine.material : '',
+            scale: this.figurine?.scale ? this.figurine.scale : '',
             price: this.figurine.price,
-            rating: this.figurine.rating,
             year: this.figurine.year,
             img_figurine: ''
         })
@@ -115,7 +123,7 @@ export class FigurineFormComponent implements OnInit {
         if (this.idFigurine) {
             this.figurineService.editFigurine(this.figurine.id, this.figurineForm.value).subscribe({
                 next: () => {
-                    this.toastr.success('Le type de bouteille a été modifié', 'Modifier');
+                    this.toastr.success('La figurine a été modifié', 'Modifier');
                     this.router.navigateByUrl('/figurine').catch(err => console.error(err));
                 },
                 error: (err) => {
@@ -125,7 +133,7 @@ export class FigurineFormComponent implements OnInit {
         } else {
             this.figurineService.addFigurine(this.figurineForm.value).subscribe({
                 next: () => {
-                    this.toastr.success('Le type de bouteille a été ajouté', 'Ajouter');
+                    this.toastr.success('La figurine a été ajouté', 'Ajouter');
                     this.router.navigateByUrl('/figurine').catch(err => console.error(err));
                 },
                 error: (err) => {

@@ -1,14 +1,23 @@
+<mat-toolbar color="primary">
+    <h2>Liste des figurines</h2>
+    <span class="spacer"></span>
+
+    <button mat-stroked-button
+            class="m-lg-2"
+            routerLink="/figurine/add"
+            aria-label="icon-button">
+        <mat-icon>add_circle_outline</mat-icon>
+    </button>
+</mat-toolbar>
 <div class="container">
     <div class="row">
         <div class="col-md-12 pt-2">
-            <h3 i18n="@@FigurineList.title">Liste des figurines</h3>
-
             <div>
-                <label for="searchInput">
+                <label for="searchInput" class="mt-2 mb-2">
                     <input matInput
                         id="searchInput"
                         i18n-placeholder="@@FigurineList.findFigurine.placeholder"
-                        placeholder="Rechercher une figurine"
+                        placeholder="Rechercher par nom"
                         #input>
                 </label>
             </div>
@@ -20,9 +29,9 @@
                 matSortDirection="asc">
 
                 <!-- name Column -->
-                <ng-container matColumnDef="name">
+                <ng-container matColumnDef="name" >
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
+                        mat-sort-header="name"
                         i18n="@@FigurineAttributes.name"> Nom
                     </mat-header-cell>
                     <mat-cell mat-cell
@@ -32,17 +41,56 @@
                 <!-- Price Column -->
                 <ng-container matColumnDef="price">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
-                        i18n="@@FigurineAttributes.price"> Prix
+                        mat-sort-header="price"
+                        i18n="@@FigurineAttributes.price"> Prix de sortie
                     </mat-header-cell>
                     <mat-cell mat-cell
                         *matCellDef="let figurine"> {{figurine.price | currency:'EUR':true}} </mat-cell>
                 </ng-container>
 
+                <!-- Game Column -->
+                <ng-container matColumnDef="publisher">
+                    <mat-header-cell *matHeaderCellDef
+                        mat-sort-header="publisher"
+                        i18n="@@FigurineAttributes.publisher"> Éditeur
+                    </mat-header-cell>
+                    <mat-cell mat-cell
+                        *matCellDef="let figurine"> {{figurine.publisher}} </mat-cell>
+                </ng-container>
+
+                <!-- Game Column -->
+                <ng-container matColumnDef="game">
+                    <mat-header-cell *matHeaderCellDef
+                        mat-sort-header="game"
+                        i18n="@@FigurineAttributes.game"> Jeu
+                    </mat-header-cell>
+                    <mat-cell mat-cell
+                        *matCellDef="let figurine"> {{figurine.game}} </mat-cell>
+                </ng-container>
+
+                <!-- Material Column -->
+                <ng-container matColumnDef="material">
+                    <mat-header-cell *matHeaderCellDef
+                        mat-sort-header="material"
+                        i18n="@@FigurineAttributes.material"> Matière
+                    </mat-header-cell>
+                    <mat-cell mat-cell
+                        *matCellDef="let figurine"> {{figurine.material}} </mat-cell>
+                </ng-container>
+
+                <!-- Year Column -->
+                <ng-container matColumnDef="year">
+                    <mat-header-cell *matHeaderCellDef
+                        mat-sort-header="year"
+                        i18n="@@FigurineAttributes.year"> Année
+                    </mat-header-cell>
+                    <mat-cell mat-cell
+                        *matCellDef="let figurine"> {{figurine.year}} </mat-cell>
+                </ng-container>
+
                 <!-- Actions Column -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef
-                        mat-sort-header
                         i18n="@@FigurineAttributes.actions"> Actions
                     </mat-header-cell>
                     <mat-cell *matCellDef="let figurine">
@@ -85,7 +133,6 @@
                     <span i18n="@@FigurineList.button.addFigurine">Ajouter un model de figurine</span>
                 </button>
             </div>
-
         </div>
     </div>
 </div>

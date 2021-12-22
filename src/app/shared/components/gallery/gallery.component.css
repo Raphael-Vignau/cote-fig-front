@@ -6,3 +6,19 @@
 ngx-masonry {
     margin: 0 auto;
 }
+
+.onHoverUI {
+    display: none;
+}
+
+mat-card:hover img {
+    opacity: 0.5;
+}
+
+mat-card:hover + .onHoverUI, .onHoverUI:hover {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+}

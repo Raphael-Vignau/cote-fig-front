@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FigurineListComponent } from "./figurine-list/figurine-list.component";
 import { FigurineAddComponent } from "./figurine-add/figurine-add.component";
 import { FigurineEditComponent } from "./figurine-edit/figurine-edit.component";
+import {FigurineDetailsComponent} from "./figurine-details/figurine-details.component";
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'edit/:idFigurine',
         component: FigurineEditComponent
+    },
+    {
+        path: 'details/:idFigurine',
+        component: FigurineDetailsComponent
     }
 ];
 

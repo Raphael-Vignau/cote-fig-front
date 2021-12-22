@@ -15,6 +15,7 @@ import {NgxMasonryModule} from "ngx-masonry";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         NgxMasonryModule,
         MatBadgeModule,
         MatChipsModule,
-        MatTooltipModule
+        MatTooltipModule,
+        InfiniteScrollModule
     ],
     exports: [
         HeaderComponent,

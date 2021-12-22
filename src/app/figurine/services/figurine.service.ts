@@ -49,12 +49,12 @@ export class FigurineService {
         );
     }
 
-    getFigurinesForHome(sortBy?: string, sortDirection?: string, pageNumber?: number, pageSize?: number): Observable<Figurine[]> {
+    getFigurinesForHome(sortBy?: string, sortDirection?: string, startFigurine?: number, nbrFigurines?: number): Observable<Figurine[]> {
         let params = new HttpParams()
             .set('_sort', sortBy ? sortBy : 'createdAt')
             .set('_direction', sortDirection ? sortDirection : 'DESC')
-            .set('_start', pageNumber && pageSize ? (pageNumber * pageSize).toString() : '0')
-            .set('_limit', pageSize ? pageSize.toString() : '20');
+            .set('_start', startFigurine ? (startFigurine).toString() : '0')
+            .set('_limit', nbrFigurines ? nbrFigurines.toString() : '20');
         const options = {
             params
         };

@@ -1,0 +1,40 @@
+<div class="container mb-2" *ngIf="figurine">
+    <div class="row">
+        <div class="col-md-6 pt-2">
+            <mat-card>
+                <img mat-card-image
+                     *ngIf="figurine.img_name"
+                     src="{{this.authUrl + '/figurines/file/' + this.figurine.img_name}}"
+                     alt="Image figurine">
+                <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
+                <mat-card-actions>
+                    <button color="primary"
+                            mat-raised-button>
+                        Je l'ai
+                    </button>
+                    <button color="primary"
+                            mat-raised-button>
+                        Je la chercher
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <div class="col-md-6 pt-2">
+            <mat-card>
+                <mat-card-title>{{figurine.name}}</mat-card-title>
+                <mat-card-subtitle>
+                    <mat-chip-list aria-label="Fish selection">
+                        <mat-chip *ngIf="figurine.scale && figurine.scale != 'null'">{{figurine.scale}}</mat-chip>
+                        <mat-chip *ngIf="figurine.material && figurine.material != 'null'">{{figurine.material}}</mat-chip>
+                        <mat-chip *ngIf="figurine.artist && figurine.artist != 'null'">{{figurine.artist}}</mat-chip>
+                        <mat-chip *ngIf="figurine.publisher && figurine.publisher != 'null'">{{figurine.publisher}}</mat-chip>
+                    </mat-chip-list>
+                </mat-card-subtitle>
+                <mat-card-content>
+                    <p>{{figurine.description}}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

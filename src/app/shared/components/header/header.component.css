@@ -10,3 +10,8 @@
 mat-toolbar {
     height: auto;
 }
+
+.toolbar-primary {
+    position: relative;
+    z-index: 5;
+}

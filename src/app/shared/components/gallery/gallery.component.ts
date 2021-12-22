@@ -12,6 +12,7 @@ import {NgxMasonryOptions} from "ngx-masonry";
 export class GalleryComponent implements OnInit {
     figurines: Figurine[] = [];
     authUrl = environment.api_base_url;
+    nbrFigurinesTotal: number = 20
     public masonryOptions: NgxMasonryOptions = {
         columnWidth: '.masonry-item',
         itemSelector: '.masonry-item',
@@ -31,14 +32,20 @@ export class GalleryComponent implements OnInit {
         this.getFigurines()
     }
 
-    getFigurines() {
-        this.figurineService.getFigurinesForHome().subscribe(
-            figurines => {
-                this.figurines = figurines
+    getFigurines(startFigurine: number = 0, sortBy: string = 'createdAt', sortDirection: string = 'DESC', nbrFigurines: number = 20) {
+        this.figurineService.getFigurinesForHome(sortBy, sortDirection, startFigurine, nbrFigurines).subscribe(
+            (figurines) => {
+                this.figurines.push(...figurines)
             },
             error => {
                 console.error(error)
             }
         )
+    }
+
+    onScroll() {
+        const startFigurine: number = this.nbrFigurinesTotal;
+        this.nbrFigurinesTotal += 20;
+        this.getFigurines(startFigurine)
     }
 }

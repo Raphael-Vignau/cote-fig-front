@@ -8,14 +8,8 @@
                      alt="Image figurine">
                 <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
                 <mat-card-actions>
-                    <button color="primary"
-                            mat-raised-button>
-                        Je l'ai
-                    </button>
-                    <button color="primary"
-                            mat-raised-button>
-                        Je la chercher
-                    </button>
+                    <app-add-list-button [idFigurine]="figurine.id" [collection]="true"></app-add-list-button>
+                    <app-add-list-button [idFigurine]="figurine.id" [wishlist]="true"></app-add-list-button>
                 </mat-card-actions>
             </mat-card>
         </div>

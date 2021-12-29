@@ -18,7 +18,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialFileInputModule} from "ngx-material-file-input";
 import {FigurineFormComponent} from './figurine-form/figurine-form.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {FigurineDetailsComponent} from './figurine-details/figurine-details.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {SharedModule} from "../shared/shared.module";
@@ -30,8 +29,7 @@ import {MatBadgeModule} from "@angular/material/badge";
         FigurineListComponent,
         FigurineAddComponent,
         FigurineEditComponent,
-        FigurineFormComponent,
-        FigurineDetailsComponent
+        FigurineFormComponent
     ],
     imports: [
         CommonModule,

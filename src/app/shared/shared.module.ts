@@ -16,13 +16,15 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import { AddListButtonComponent } from './components/add-list-button/add-list-button.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         NotFoundComponent,
         FooterComponent,
-        GalleryComponent
+        GalleryComponent,
+        AddListButtonComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +44,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
     exports: [
         HeaderComponent,
         FooterComponent,
-        GalleryComponent
+        GalleryComponent,
+        AddListButtonComponent
     ]
 })
 export class SharedModule {

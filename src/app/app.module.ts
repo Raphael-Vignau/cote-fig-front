@@ -25,6 +25,8 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 import {registerLocaleData} from "@angular/common";
 import localeFr from '@angular/common/locales/fr';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {FigurineDetailsComponent} from "./figurine/figurine-details/figurine-details.component";
+import {MatChipsModule} from "@angular/material/chips";
 
 registerLocaleData(localeFr);
 
@@ -33,7 +35,8 @@ registerLocaleData(localeFr);
         AppComponent,
         HomeComponent,
         ContactComponent,
-        DashboardComponent
+        DashboardComponent,
+        FigurineDetailsComponent
     ],
     imports: [
         BrowserModule,
@@ -56,7 +59,8 @@ registerLocaleData(localeFr);
         MatButtonModule,
         MatCardModule,
         MatIconModule,
-        MatMenuModule
+        MatMenuModule,
+        MatChipsModule
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},

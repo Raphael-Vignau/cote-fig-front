@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
         this.metaService.updateTag({
             property: 'og:description  ',
             content: 'description du site'
-        });
-
+        })
     }
 }

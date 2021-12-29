@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FigurineService} from "../services/figurine.service";
 import {Title, Meta} from '@angular/platform-browser';
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
     selector: 'app-figurine-details',
@@ -13,8 +14,10 @@ import {Title, Meta} from '@angular/platform-browser';
 export class FigurineDetailsComponent implements OnInit {
     figurine!: Figurine;
     authUrl = environment.api_base_url;
+    logged: boolean = false;
 
     constructor(
+        private _authService: AuthService,
         private figurineService: FigurineService,
         public route: ActivatedRoute,
         private metaService: Meta,
@@ -24,10 +27,15 @@ export class FigurineDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getMe();
         const idFigurine = this.route.snapshot.paramMap.get('idFigurine');
         if (idFigurine) {
             this.getFigurine(idFigurine)
         }
+    }
+
+    getMe(): void {
+        this.logged = !!this._authService.currentUserValue
     }
 
     getFigurine(idFigurine: string): void {

@@ -78,35 +78,11 @@ export class GalleryComponent implements OnInit {
         this.getFigurines(startFigurine)
     }
 
-    onAddCollection(idFigurine: string) {
-        this.userService.addToCollection(idFigurine).subscribe(
-            () => {
-                this.toastr.success('Figurine ajoutée à votre collection', 'Ajouter')
-            },
-            error => {
-                this.toastr.error(error, 'Erreur');
-                console.error(error)
-            }
-        )
-    }
-
     onRemoveCollection(idFigurine: string) {
         this.userService.removeToCollection(idFigurine).subscribe(
             () => {
                 this.toastr.success('Figurine retirée de votre collection', 'Retirer');
                 this.figurines = this.figurines.filter(figurine => figurine.id !== idFigurine)
-            },
-            error => {
-                this.toastr.error(error, 'Erreur');
-                console.error(error)
-            }
-        )
-    }
-
-    onAddWishlist(idFigurine: string) {
-        this.userService.addToWishlist(idFigurine).subscribe(
-            () => {
-                this.toastr.success('Figurine ajoutée à votre Wishlist', 'Ajouter')
             },
             error => {
                 this.toastr.error(error, 'Erreur');

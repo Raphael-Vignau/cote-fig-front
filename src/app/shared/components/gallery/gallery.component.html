@@ -21,24 +21,8 @@
                     </mat-card-content>
                 </mat-card>
                 <div class="onHoverUITop" *ngIf="!wishlist && !collection">
-                    <button class="onHoverButtonHave"
-                            color="primary"
-                            (click)="onAddCollection(fig.id)"
-                            mat-raised-button
-                            matBadge="151"
-                            matBadgeColor="accent">
-                        <mat-icon>playlist_add_check</mat-icon>
-                        J'ai
-                    </button>
-                    <button class="onHoverButtonWant"
-                            color="primary"
-                            (click)="onAddWishlist(fig.id)"
-                            mat-raised-button
-                            matBadge="5"
-                            matBadgeColor="accent">
-                        <mat-icon>favorite</mat-icon>
-                        Je chercher
-                    </button>
+                    <app-add-list-button class="onHoverButtonHave" [idFigurine]="fig.id" [collection]="true"></app-add-list-button>
+                    <app-add-list-button class="onHoverButtonHave" [idFigurine]="fig.id" [wishlist]="true"></app-add-list-button>
                 </div>
                 <div class="onHoverUIBottom">
                     <button class="onHoverButtonDelete"

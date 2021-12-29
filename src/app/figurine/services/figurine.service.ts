@@ -79,6 +79,21 @@ export class FigurineService {
         );
     }
 
+    getMyWishlist(sortBy?: string, sortDirection?: string, startFigurine?: number, nbrFigurines?: number): Observable<Figurine[]> {
+        let params = new HttpParams()
+            .set('_sort', sortBy ? sortBy : 'createdAt')
+            .set('_direction', sortDirection ? sortDirection : 'DESC')
+            .set('_start', startFigurine ? (startFigurine).toString() : '0')
+            .set('_limit', nbrFigurines ? nbrFigurines.toString() : '20');
+        const options = {
+            params
+        };
+
+        return this.http.get(this.authUrl + '/figurines/wishlist/me', options).pipe(
+            map((res: any) => res)
+        );
+    }
+
     getFigurinesExport(): Observable<Figurine[]> {
         return this.http.get(this.authUrl + '/figurines/export').pipe(
             map((res: any) => res)

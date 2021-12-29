@@ -51,6 +51,14 @@ export class GalleryComponent implements OnInit {
                 }
             )
         } else if (this.wishlist) {
+            this.figurineService.getMyWishlist(sortBy, sortDirection, startFigurine, nbrFigurines).subscribe(
+                (figurines) => {
+                    this.figurines.push(...figurines)
+                },
+                error => {
+                    console.error(error)
+                }
+            )
 
         } else {
             this.figurineService.getFigurinesForHome(sortBy, sortDirection, startFigurine, nbrFigurines).subscribe(
@@ -96,26 +104,27 @@ export class GalleryComponent implements OnInit {
     }
 
     onAddWishlist(idFigurine: string) {
-        // this.userService.addToWishlist(idFigurine).subscribe(
-        //     () => {
-        //         this.toastr.success('Figurine ajoutée à votre Wishlist', 'Ajouter')
-        //     },
-        //     error => {
-        //         this.toastr.error(error, 'Erreur');
-        //         console.error(error)
-        //     }
-        // )
+        this.userService.addToWishlist(idFigurine).subscribe(
+            () => {
+                this.toastr.success('Figurine ajoutée à votre Wishlist', 'Ajouter')
+            },
+            error => {
+                this.toastr.error(error, 'Erreur');
+                console.error(error)
+            }
+        )
     }
 
     onRemoveWishlist(idFigurine: string) {
-        // this.userService.removeToWishlist(idFigurine).subscribe(
-        //     () => {
-        //         this.toastr.success('Figurine retirée de votre collection', 'Retirer')
-        //     },
-        //     error => {
-        //         this.toastr.error(error, 'Erreur');
-        //         console.error(error)
-        //     }
-        // )
+        this.userService.removeToWishlist(idFigurine).subscribe(
+            () => {
+                this.toastr.success('Figurine retirée de votre Wishlist', 'Retirer');
+                this.figurines = this.figurines.filter(figurine => figurine.id !== idFigurine)
+            },
+            error => {
+                this.toastr.error(error, 'Erreur');
+                console.error(error)
+            }
+        )
     }
 }

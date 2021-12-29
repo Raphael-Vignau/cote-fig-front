@@ -137,4 +137,18 @@ export class UserService {
             })
         );
     }
+
+    addToWishlist(idFigurine: string): Observable<any> {
+        return this.http.put(`${this.authUrl}/users/me/wishlist/${idFigurine}`, {}).pipe(
+            map((newUser: any) => newUser)
+        );
+    }
+
+    removeToWishlist(idFigurine: string): Observable<any> {
+        return this.http.delete(`${this.authUrl}/users/me/wishlist/${idFigurine}`, {}).pipe(
+            map(() => {
+                console.log('Figurine retirée de la Wishlist');
+            })
+        );
+    }
 }

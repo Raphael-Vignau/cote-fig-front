@@ -17,6 +17,8 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import { AddListButtonComponent } from './components/add-list-button/add-list-button.component';
+import { HoldersListComponent } from './components/holders-list/holders-list.component';
+import { ResearchersListComponent } from './components/researchers-list/researchers-list.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { AddListButtonComponent } from './components/add-list-button/add-list-bu
         NotFoundComponent,
         FooterComponent,
         GalleryComponent,
-        AddListButtonComponent
+        AddListButtonComponent,
+        HoldersListComponent,
+        ResearchersListComponent
     ],
     imports: [
         CommonModule,
@@ -45,7 +49,9 @@ import { AddListButtonComponent } from './components/add-list-button/add-list-bu
         HeaderComponent,
         FooterComponent,
         GalleryComponent,
-        AddListButtonComponent
+        AddListButtonComponent,
+        HoldersListComponent,
+        ResearchersListComponent
     ]
 })
 export class SharedModule {

@@ -11,14 +11,16 @@
 
     <button mat-stroked-button
             class="m-lg-2"
-            [routerLink]="['user/collection']"
+            *ngIf="logged"
+            [routerLink]="['collection']"
             aria-label="icon-button">
         <mat-icon>playlist_add_check</mat-icon>
     </button>
 
     <button mat-stroked-button
             class="m-lg-2"
-            [routerLink]="['user/wishlist']"
+            *ngIf="logged"
+            [routerLink]="['wishlist']"
             aria-label="icon-button">
         <mat-icon>favorite</mat-icon>
     </button>
@@ -56,6 +58,12 @@
                 [routerLink]="['auth/login']">
             <mat-icon color="accent">login</mat-icon>
             <span>Connexion</span>
+        </button>
+        <button mat-menu-item
+                *ngIf="logged"
+                [routerLink]="['dashboard']">
+            <mat-icon color="accent">dashboard</mat-icon>
+            <span>Tableau de bord</span>
         </button>
         <button mat-menu-item
                 *ngIf="logged"

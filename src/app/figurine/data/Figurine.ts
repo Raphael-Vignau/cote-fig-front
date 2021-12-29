@@ -1,4 +1,5 @@
 import {Tag} from "../../tag/data/tag";
+import {User} from "../../user/data/User";
 
 export interface Figurine {
     id: string;
@@ -17,5 +18,7 @@ export interface Figurine {
     img_original_name: string;
     img_name: string;
 
-    tags: Tag[]
+    tags: Tag[];
+    holders: User[];
+    researchers: User[];
 }

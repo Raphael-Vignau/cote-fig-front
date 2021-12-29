@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class AddListButtonComponent implements OnInit {
     @Input() idFigurine!: string;
+    @Input() nbrUserAlready: number = 0;
     @Input() collection: boolean = false;
     @Input() wishlist: boolean = false;
     logged: boolean = false;
@@ -29,10 +30,10 @@ export class AddListButtonComponent implements OnInit {
         this.logged = !!this._authService.currentUserValue
         if (this.collection) {
             this.textButton = 'Je l\'ai';
-            this.iconButton = 'playlist_add_check'
+            this.iconButton = 'playlist_add_check';
 
         } else if (this.wishlist) {
-            this.textButton = 'Je cherche';
+            this.textButton = 'Je la cherche';
             this.iconButton = 'favorite'
         }
     }
@@ -43,6 +44,7 @@ export class AddListButtonComponent implements OnInit {
                 this.userService.addToCollection(idFigurine).subscribe(
                     () => {
                         this.toastr.success('Figurine ajoutée à votre collection', 'Ajouter')
+                        this.nbrUserAlready ++
                     },
                     error => {
                         this.toastr.error(error, 'Erreur');
@@ -54,6 +56,7 @@ export class AddListButtonComponent implements OnInit {
                 this.userService.addToWishlist(idFigurine).subscribe(
                     () => {
                         this.toastr.success('Figurine ajoutée à votre Wishlist', 'Ajouter')
+                        this.nbrUserAlready ++
                     },
                     error => {
                         this.toastr.error(error, 'Erreur');

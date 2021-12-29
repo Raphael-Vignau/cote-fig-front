@@ -27,6 +27,8 @@ import localeFr from '@angular/common/locales/fr';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {FigurineDetailsComponent} from "./figurine/figurine-details/figurine-details.component";
 import {MatChipsModule} from "@angular/material/chips";
+import {CollectionComponent} from "./user/collection/collection.component";
+import {WishlistComponent} from "./user/wishlist/wishlist.component";
 
 registerLocaleData(localeFr);
 
@@ -36,7 +38,9 @@ registerLocaleData(localeFr);
         HomeComponent,
         ContactComponent,
         DashboardComponent,
-        FigurineDetailsComponent
+        FigurineDetailsComponent,
+        CollectionComponent,
+        WishlistComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,6 +1,6 @@
 <div class="container mb-2" *ngIf="figurine">
-    <div class="row">
-        <div class="col-md-6 pt-2">
+    <div class="row pt-2">
+        <div class="col-md-6">
             <mat-card>
                 <img mat-card-image
                      *ngIf="figurine.img_name"
@@ -8,23 +8,15 @@
                      alt="Image figurine">
                 <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
                 <mat-card-actions>
-                    <app-add-list-button [idFigurine]="figurine.id" [collection]="true"></app-add-list-button>
-                    <app-add-list-button [idFigurine]="figurine.id" [wishlist]="true"></app-add-list-button>
+                    <app-add-list-button [idFigurine]="figurine.id" [collection]="true" [nbrUserAlready]="figurine.holders.length"></app-add-list-button>
+                    <app-add-list-button [idFigurine]="figurine.id" [wishlist]="true" [nbrUserAlready]="figurine.researchers.length"></app-add-list-button>
                 </mat-card-actions>
             </mat-card>
         </div>
 
-        <div class="col-md-6 pt-2">
+        <div class="col-md-6">
             <mat-card>
                 <mat-card-title>{{figurine.name}}</mat-card-title>
-                <mat-card-subtitle>
-<!--                    <mat-chip-list aria-label="Fish selection">-->
-<!--                        <mat-chip *ngIf="figurine.scale && figurine.scale != 'null'">{{figurine.scale}}</mat-chip>-->
-<!--                        <mat-chip *ngIf="figurine.material && figurine.material != 'null'">{{figurine.material}}</mat-chip>-->
-<!--                        <mat-chip *ngIf="figurine.artist && figurine.artist != 'null'">{{figurine.artist}}</mat-chip>-->
-<!--                        <mat-chip *ngIf="figurine.publisher && figurine.publisher != 'null'">{{figurine.publisher}}</mat-chip>-->
-<!--                    </mat-chip-list>-->
-                </mat-card-subtitle>
                 <mat-card-content>
                     <p>{{figurine.description}}</p>
                     <mat-chip-list aria-label="Fish selection" *ngIf="figurine.tags.length">
@@ -32,6 +24,14 @@
                     </mat-chip-list>
                 </mat-card-content>
             </mat-card>
+            <div class="row pt-2">
+                <div class="col-md-6">
+                    <app-holders-list [holders]="figurine.holders"></app-holders-list>
+                </div>
+                <div class="col-md-6">
+                    <app-researchers-list [researchers]="figurine.researchers"></app-researchers-list>
+                </div>
+            </div>
         </div>
     </div>
 </div>

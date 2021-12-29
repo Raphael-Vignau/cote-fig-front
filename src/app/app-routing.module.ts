@@ -9,6 +9,8 @@ import {Role} from "./user/data/Role";
 import {ProfileComponent} from "./user/profile/profile.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {FigurineDetailsComponent} from "./figurine/figurine-details/figurine-details.component";
+import {CollectionComponent} from "./user/collection/collection.component";
+import {WishlistComponent} from "./user/wishlist/wishlist.component";
 
 const routes: Routes = [
     {
@@ -18,6 +20,16 @@ const routes: Routes = [
     {
         path: 'figurine/details/:idFigurine',
         component: FigurineDetailsComponent
+    },
+    {
+        path: 'collection',
+        canActivate: [LoggedInGuardService],
+        component: CollectionComponent
+    },
+    {
+        path: 'wishlist',
+        canActivate: [LoggedInGuardService],
+        component: WishlistComponent
     },
     {
         path: 'dashboard',

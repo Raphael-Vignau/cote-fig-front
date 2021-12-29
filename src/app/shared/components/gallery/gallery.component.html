@@ -9,33 +9,39 @@
     >
         <ngx-masonry [options]="masonryOptions">
             <div class="grid-sizer"></div>
-            <div ngxMasonryItem class="masonry-item" *ngFor="let fig of figurines">
-                <mat-card routerLink="/figurine/details/{{fig.id}}">
-                    <img mat-card-image *ngIf="fig.img_name"
-                         src="{{this.authUrl + '/figurines/file/' + fig.img_name}}"
-                         alt="Photo of {{fig.name}}">
-                    <mat-icon *ngIf="!fig.img_name">add_circle_outline</mat-icon>
-                    <mat-card-title>{{fig.name}}</mat-card-title>
+            <div ngxMasonryItem class="masonry-item" *ngFor="let figurine of figurines">
+                <mat-card routerLink="/figurine/details/{{figurine.id}}">
+                    <img mat-card-image *ngIf="figurine.img_name"
+                         src="{{this.authUrl + '/figurines/file/' + figurine.img_name}}"
+                         alt="Photo of {{figurine.name}}">
+                    <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
+                    <mat-card-title>{{figurine.name}}</mat-card-title>
                     <mat-card-content>
-                        <p>{{fig.description}}</p>
+                        <p>{{figurine.description}}</p>
                     </mat-card-content>
                 </mat-card>
                 <div class="onHoverUITop" *ngIf="!wishlist && !collection">
-                    <app-add-list-button class="onHoverButtonHave" [idFigurine]="fig.id" [collection]="true"></app-add-list-button>
-                    <app-add-list-button class="onHoverButtonHave" [idFigurine]="fig.id" [wishlist]="true"></app-add-list-button>
+                    <app-add-list-button class="onHoverButtonHave"
+                                         [idFigurine]="figurine.id"
+                                         [collection]="true"
+                                         [nbrUserAlready]="figurine.holders.length"></app-add-list-button>
+                    <app-add-list-button class="onHoverButtonHave"
+                                         [idFigurine]="figurine.id"
+                                         [wishlist]="true"
+                                         [nbrUserAlready]="figurine.researchers.length"></app-add-list-button>
                 </div>
                 <div class="onHoverUIBottom">
                     <button class="onHoverButtonDelete"
                             *ngIf="collection"
                             color="accent"
-                            (click)="onRemoveCollection(fig.id)"
+                            (click)="onRemoveCollection(figurine.id)"
                             mat-raised-button>
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button class="onHoverButtonDelete"
                             *ngIf="wishlist"
                             color="accent"
-                            (click)="onRemoveWishlist(fig.id)"
+                            (click)="onRemoveWishlist(figurine.id)"
                             mat-raised-button>
                         <mat-icon>delete</mat-icon>
                     </button>

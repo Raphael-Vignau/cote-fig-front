@@ -1,5 +1,6 @@
 import { Role } from "./Role";
 import { UserStatus } from "./user.status";
+import {Figurine} from "../../figurine/data/Figurine";
 
 export interface User {
     sub: string;
@@ -11,4 +12,6 @@ export interface User {
     username: string;
     email: string;
     tel: string;
+
+    collection: Figurine[];
 }

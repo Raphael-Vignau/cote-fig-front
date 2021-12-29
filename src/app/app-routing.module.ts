@@ -39,6 +39,12 @@ const routes: Routes = [
         data: { roles: [Role.ADMIN] }
     },
     {
+        path: 'tag',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./tag/tag.module').then(m => m.TagModule),
+        data: { roles: [Role.ADMIN] }
+    },
+    {
         path: 'me',
         canActivate: [LoggedInGuardService],
         component: ProfileComponent

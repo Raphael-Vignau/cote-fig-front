@@ -3,6 +3,7 @@ import {Figurine} from "../data/Figurine";
 import {environment} from "../../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FigurineService} from "../services/figurine.service";
+import {Title, Meta} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-figurine-details',
@@ -16,8 +17,11 @@ export class FigurineDetailsComponent implements OnInit {
     constructor(
         private figurineService: FigurineService,
         public route: ActivatedRoute,
+        private metaService: Meta,
+        private titleService: Title,
         public router: Router
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
         const idFigurine = this.route.snapshot.paramMap.get('idFigurine');
@@ -33,6 +37,29 @@ export class FigurineDetailsComponent implements OnInit {
             },
             error: () => {
                 this.router.navigate(['/not-found']).then()
+            },
+            complete: () => {
+                this.titleService.setTitle(this.figurine.name);
+                this.metaService.updateTag({
+                    property: 'og:image',
+                    content: this.authUrl + '/figurines/file/' + this.figurine.img_name
+                });
+                this.metaService.updateTag({
+                    property: 'og:type',
+                    content: 'website'
+                });
+                this.metaService.updateTag({
+                    property: 'og:title',
+                    content: this.figurine.name
+                });
+                this.metaService.updateTag({
+                    property: 'og:url ',
+                    content: window.location.href
+                });
+                this.metaService.updateTag({
+                    property: 'og:description  ',
+                    content: this.figurine.description
+                });
             }
         })
     }

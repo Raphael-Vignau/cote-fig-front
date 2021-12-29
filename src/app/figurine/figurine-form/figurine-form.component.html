@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row pb-2">
     <div class="col-md-6 pt-2">
         <mat-card>
             <mat-card-content>
@@ -17,6 +17,30 @@
                         <mat-error *ngIf="nameCtrl.touched && nameCtrl.hasError('minlength')">
                             Le nom doit faire au moins 3 caractères
                         </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-list #chipList aria-label="Tags selection" formArrayName="tags">
+                            <mat-chip *ngFor="let tag of tagsCtrl.value; let i = index"
+                                      (removed)="onRemoveTag(i)">
+                                {{tag.name}}
+                                <button matChipRemove>
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip>
+                            <input placeholder="Nouveau tag..."
+                                   #tagInput
+                                   [matAutocomplete]="auto"
+                                   [matChipInputFor]="chipList"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   (matChipInputTokenEnd)="onAddTag($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedTag($event)">
+                            <mat-option *ngFor="let tag of allTags" [value]="tag">
+                                {{tag.name}}
+                            </mat-option>
+                        </mat-autocomplete>
                     </mat-form-field>
 
                     <mat-form-field appearance="standard">

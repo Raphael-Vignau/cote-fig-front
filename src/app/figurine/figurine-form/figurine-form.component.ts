@@ -1,25 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { ActivatedRoute, Router } from "@angular/router";
-import { environment } from "../../../environments/environment";
-import { Figurine } from "../data/Figurine";
-import { FigurineService } from "../services/figurine.service";
-import { FileValidator } from "ngx-material-file-input";
-import { imageFile } from "../../shared/image-file.validator";
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {
+    AbstractControlOptions,
+    FormArray,
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators
+} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import {ActivatedRoute, Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
+import {Figurine} from "../data/Figurine";
+import {FigurineService} from "../services/figurine.service";
+import {FileValidator} from "ngx-material-file-input";
+import {imageFile} from "../../shared/image-file.validator";
+import {Tag} from "../../tag/data/tag";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {fromEvent, of} from "rxjs";
+import {TagService} from "../../tag/services/tag.service";
+import {catchError, debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-figurine-form',
     templateUrl: './figurine-form.component.html',
     styleUrls: ['./figurine-form.component.css']
 })
-export class FigurineFormComponent implements OnInit {
+export class FigurineFormComponent implements OnInit, AfterViewInit {
     @Input() idFigurine!: string | null;
     classFigurine: string = 'col-md-12';
     authUrl = environment.api_base_url;
     figurineForm: FormGroup;
     figurine!: Figurine;
     readonly maxSize: number = 104857600;
+    separatorKeysCodes: number[] = [ENTER, COMMA];
+    allTags!: Array<Tag>;
 
     nameCtrl: FormControl;
     descriptionCtrl: FormControl;
@@ -31,10 +47,14 @@ export class FigurineFormComponent implements OnInit {
     priceCtrl: FormControl;
     yearCtrl: FormControl;
     img_figurineCtrl: FormControl;
+    tagsCtrl: FormArray;
+
+    @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
     constructor(
         private fb: FormBuilder,
         private figurineService: FigurineService,
+        private tagService: TagService,
         private toastr: ToastrService,
         public route: ActivatedRoute,
         public router: Router
@@ -49,6 +69,7 @@ export class FigurineFormComponent implements OnInit {
         this.priceCtrl = fb.control('', [Validators.maxLength(10)]);
         this.yearCtrl = fb.control('', [Validators.maxLength(4)]);
         this.img_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSize)]);
+        this.tagsCtrl = fb.array([]);
 
         this.figurineForm = fb.group({
             name: this.nameCtrl,
@@ -60,7 +81,8 @@ export class FigurineFormComponent implements OnInit {
             scale: this.scaleCtrl,
             price: this.priceCtrl,
             year: this.yearCtrl,
-            img_figurine: this.img_figurineCtrl
+            img_figurine: this.img_figurineCtrl,
+            tags: this.tagsCtrl
         }, {
             validator: imageFile('img_figurine')
         } as AbstractControlOptions);
@@ -71,6 +93,21 @@ export class FigurineFormComponent implements OnInit {
             this.classFigurine = 'col-md-6';
             this.getFigurine(this.idFigurine)
         }
+    }
+
+    ngAfterViewInit(): void {
+        // server-side search
+        fromEvent(this.tagInput.nativeElement, 'keyup').pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            tap(() => {
+                this.getAllTags();
+            })
+        ).subscribe();
+    }
+
+    get tagsArr() {
+        return this.figurineForm.get('tags') as FormArray;
     }
 
     getFigurine(idFigurine: string): void {
@@ -96,8 +133,23 @@ export class FigurineFormComponent implements OnInit {
             scale: this.figurine?.scale ? this.figurine.scale : '',
             price: this.figurine.price,
             year: this.figurine.year,
+            tags: [],
             img_figurine: ''
         })
+        this.setTags()
+    }
+
+    setTags() {
+        let tagForm: FormGroup;
+        this.figurine.tags.map(
+            tag => {
+                tagForm = this.fb.group({
+                    name: [tag.name, Validators.required],
+                    rating: [tag.rating]
+                })
+                this.tagsCtrl.push(tagForm)
+            }
+        )
     }
 
     getFile(fileName: string) {
@@ -112,17 +164,36 @@ export class FigurineFormComponent implements OnInit {
         )
     }
 
-    onSubmit(): void {
+    getAllTags() {
+        this.tagService.getTags(this.tagInput?.nativeElement.value)
+            .pipe(catchError(() => of([]))).subscribe(
+            (tags: Tag[]) => this.allTags = tags
+        )
+    }
+
+    saveImage(idFigurine: string): void {
         if (this.figurineForm.value.img_figurine && this.figurineForm.value.img_figurine._files) {
             this.figurineForm.value.img_figurine = this.figurineForm.value.img_figurine._files[0]
             // For delete old img
             if (this.figurine && this.figurine.img_name) {
                 this.figurineForm.value.img_name = this.figurine.img_name
             }
+            this.figurineService.editFigurineImage(idFigurine, this.figurineForm.value).subscribe({
+                next: () => {
+                    this.toastr.success('Image enregistrée', 'Modifier');
+                },
+                error: (err) => {
+                    this.errorSubmit(err)
+                }
+            })
         }
+    }
+
+    onSubmit(): void {
         if (this.idFigurine) {
             this.figurineService.editFigurine(this.figurine.id, this.figurineForm.value).subscribe({
                 next: () => {
+                    this.saveImage(this.figurine.id)
                     this.toastr.success('La figurine a été modifié', 'Modifier');
                     this.router.navigateByUrl('/figurine').catch(err => console.error(err));
                 },
@@ -132,7 +203,8 @@ export class FigurineFormComponent implements OnInit {
             })
         } else {
             this.figurineService.addFigurine(this.figurineForm.value).subscribe({
-                next: () => {
+                next: (figurine) => {
+                    this.saveImage(figurine.id)
                     this.toastr.success('La figurine a été ajouté', 'Ajouter');
                     this.router.navigateByUrl('/figurine').catch(err => console.error(err));
                 },
@@ -141,6 +213,49 @@ export class FigurineFormComponent implements OnInit {
                 }
             })
         }
+    }
+
+    onRemoveTag(index: number): void {
+        if (index >= 0) {
+            this.tagsCtrl.removeAt(index);
+            this.tagsCtrl.updateValueAndValidity();
+            this.figurineForm.markAsDirty()
+        }
+    }
+
+    onAddTag(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value.trim();
+
+        if (value.length <= 60 && value.length > 2) {
+            const tagForm = this.fb.group({
+                name: [value, Validators.required],
+                rating: [0]
+            });
+            this.tagsCtrl.push(tagForm);
+            this.tagsCtrl.updateValueAndValidity();
+            this.figurineForm.markAsDirty()
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    onSelectedTag(event: MatAutocompleteSelectedEvent): void {
+        const tagForm = this.fb.group({
+            name: [event.option.value.name, Validators.required],
+            rating: [event.option.value.rating]
+        });
+        this.tagsCtrl.push(tagForm);
+        this.tagsCtrl.updateValueAndValidity();
+        this.figurineForm.markAsDirty()
+
+        if (this.tagInput) {
+            this.tagInput.nativeElement.value = '';
+        }
+        // this.tagsCtrl.setValue(null);
     }
 
     errorSubmit(error: string[] | string) {

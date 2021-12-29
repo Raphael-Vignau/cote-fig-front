@@ -7,7 +7,11 @@ ngx-masonry {
     margin: 0 auto;
 }
 
-.onHoverUI {
+.onHoverUITop {
+    display: none;
+}
+
+.onHoverUIBottom {
     display: none;
 }
 
@@ -15,7 +19,15 @@ mat-card:hover img {
     opacity: 0.5;
 }
 
-mat-card:hover + .onHoverUI, .onHoverUI:hover {
+mat-card:hover + .onHoverUITop, .onHoverUITop:hover {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+}
+
+mat-card:hover + .onHoverUIBottom, .onHoverUIBottom:hover {
     display: flex;
     justify-content: space-evenly;
     position: absolute;

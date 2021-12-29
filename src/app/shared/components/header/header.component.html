@@ -11,10 +11,16 @@
 
     <button mat-stroked-button
             class="m-lg-2"
-            [routerLink]="['contact']"
-            *ngIf="!roleAdmin"
+            [routerLink]="['user/collection']"
             aria-label="icon-button">
-        <mat-icon>mail</mat-icon>
+        <mat-icon>playlist_add_check</mat-icon>
+    </button>
+
+    <button mat-stroked-button
+            class="m-lg-2"
+            [routerLink]="['user/wishlist']"
+            aria-label="icon-button">
+        <mat-icon>favorite</mat-icon>
     </button>
 
     <button mat-stroked-button

@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../shared/services/auth.service";
-import { Router } from "@angular/router";
-import { User } from 'src/app/user/data/User';
-import {FigurineService} from "../../figurine/services/figurine.service";
-import {Figurine} from "../../figurine/data/Figurine";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-home',
@@ -14,20 +11,34 @@ export class HomeComponent implements OnInit {
     logged = false;
 
     constructor(
-        // private _authService: AuthService,
+        private metaService: Meta,
+        private titleService: Title,
         public router: Router
     ) {
     }
 
     ngOnInit(): void {
-        // if (this._authService.currentUser) {
-        //     this._authService.currentUser.subscribe((user: User | null) => {
-        //         this.logged = !!user;
-        //         if (this.logged) {
-        //             this.router.navigateByUrl('dashboard').catch((err: Error) => console.error(err));
-        //         }
-        //     });
-        // }
+        this.titleService.setTitle('Cote-Fig');
+        this.metaService.updateTag({
+            property: 'og:image',
+            content: 'url_img'
+        });
+        this.metaService.updateTag({
+            property: 'og:type',
+            content: 'website'
+        });
+        this.metaService.updateTag({
+            property: 'og:title',
+            content: 'Cote-Fig'
+        });
+        this.metaService.updateTag({
+            property: 'og:url ',
+            content: window.location.href
+        });
+        this.metaService.updateTag({
+            property: 'og:description  ',
+            content: 'description du site'
+        });
 
     }
 }

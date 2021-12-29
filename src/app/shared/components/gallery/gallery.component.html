@@ -20,24 +20,43 @@
                         <p>{{fig.description}}</p>
                     </mat-card-content>
                 </mat-card>
-                <div class="onHoverUI">
+                <div class="onHoverUITop" *ngIf="!wishlist && !collection">
                     <button class="onHoverButtonHave"
                             color="primary"
+                            (click)="onAddCollection(fig.id)"
                             mat-raised-button
                             matBadge="151"
                             matBadgeColor="accent">
-                        Je l'ai
+                        <mat-icon>playlist_add_check</mat-icon>
+                        J'ai
                     </button>
                     <button class="onHoverButtonWant"
                             color="primary"
+                            (click)="onAddWishlist(fig.id)"
                             mat-raised-button
                             matBadge="5"
                             matBadgeColor="accent">
-                        Je la chercher
+                        <mat-icon>favorite</mat-icon>
+                        Je chercher
+                    </button>
+                </div>
+                <div class="onHoverUIBottom">
+                    <button class="onHoverButtonDelete"
+                            *ngIf="collection"
+                            color="accent"
+                            (click)="onRemoveCollection(fig.id)"
+                            mat-raised-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button class="onHoverButtonDelete"
+                            *ngIf="wishlist"
+                            color="accent"
+                            (click)="onRemoveWishlist(fig.id)"
+                            mat-raised-button>
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </div>
         </ngx-masonry>
     </div>
-
 </div>

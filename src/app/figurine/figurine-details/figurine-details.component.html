@@ -24,15 +24,18 @@
             <mat-card>
                 <mat-card-title>{{figurine.name}}</mat-card-title>
                 <mat-card-subtitle>
-                    <mat-chip-list aria-label="Fish selection">
-                        <mat-chip *ngIf="figurine.scale && figurine.scale != 'null'">{{figurine.scale}}</mat-chip>
-                        <mat-chip *ngIf="figurine.material && figurine.material != 'null'">{{figurine.material}}</mat-chip>
-                        <mat-chip *ngIf="figurine.artist && figurine.artist != 'null'">{{figurine.artist}}</mat-chip>
-                        <mat-chip *ngIf="figurine.publisher && figurine.publisher != 'null'">{{figurine.publisher}}</mat-chip>
-                    </mat-chip-list>
+<!--                    <mat-chip-list aria-label="Fish selection">-->
+<!--                        <mat-chip *ngIf="figurine.scale && figurine.scale != 'null'">{{figurine.scale}}</mat-chip>-->
+<!--                        <mat-chip *ngIf="figurine.material && figurine.material != 'null'">{{figurine.material}}</mat-chip>-->
+<!--                        <mat-chip *ngIf="figurine.artist && figurine.artist != 'null'">{{figurine.artist}}</mat-chip>-->
+<!--                        <mat-chip *ngIf="figurine.publisher && figurine.publisher != 'null'">{{figurine.publisher}}</mat-chip>-->
+<!--                    </mat-chip-list>-->
                 </mat-card-subtitle>
                 <mat-card-content>
                     <p>{{figurine.description}}</p>
+                    <mat-chip-list aria-label="Fish selection" *ngIf="figurine.tags.length">
+                        <mat-chip *ngFor="let tag of figurine.tags">{{tag.name}}</mat-chip>
+                    </mat-chip-list>
                 </mat-card-content>
             </mat-card>
         </div>

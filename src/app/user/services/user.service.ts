@@ -33,7 +33,7 @@ export class UserService {
     countAllUsers(filter?: string): Observable<number> {
         let params = new HttpParams();
         if (filter) {
-            params = params.set('Nom_contains', filter);
+            params = params.set('_contains', filter);
         }
         const options = {
             params
@@ -120,6 +120,20 @@ export class UserService {
         return this.http.delete(`${this.authUrl}/users/${idUser}`).pipe(
             map(() => {
                 console.log('Utilisateur supprimé');
+            })
+        );
+    }
+
+    addToCollection(idFigurine: string): Observable<any> {
+        return this.http.put(`${this.authUrl}/users/me/collection/${idFigurine}`, {}).pipe(
+            map((newUser: any) => newUser)
+        );
+    }
+
+    removeToCollection(idFigurine: string): Observable<any> {
+        return this.http.delete(`${this.authUrl}/users/me/collection/${idFigurine}`, {}).pipe(
+            map(() => {
+                console.log('Figurine retirée de la collection');
             })
         );
     }

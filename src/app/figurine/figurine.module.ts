@@ -22,6 +22,8 @@ import {FigurineDetailsComponent} from './figurine-details/figurine-details.comp
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {SharedModule} from "../shared/shared.module";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
     declarations: [
@@ -48,7 +50,9 @@ import {SharedModule} from "../shared/shared.module";
         MatToolbarModule,
         MatCardModule,
         MatChipsModule,
-        SharedModule
+        SharedModule,
+        MatAutocompleteModule,
+        MatBadgeModule
     ],
     providers: [
         FigurineService

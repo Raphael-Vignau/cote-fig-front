@@ -25,6 +25,9 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatDividerModule} from "@angular/material/divider";
 import {UserFormComponent} from './user-form/user-form.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {CollectionComponent} from './collection/collection.component';
+import {WishlistComponent} from './wishlist/wishlist.component';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -33,6 +36,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
         UserEditComponent,
         ProfileComponent,
         UserFormComponent,
+        CollectionComponent,
+        WishlistComponent,
     ],
     imports: [
         CommonModule,
@@ -54,7 +59,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
         MatSelectModule,
         MatSlideToggleModule,
         MatDividerModule,
-        MatToolbarModule
+        MatToolbarModule,
+        SharedModule
     ],
     providers: [UserService],
     exports: [ProfileComponent]

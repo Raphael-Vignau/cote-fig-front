@@ -21,7 +21,7 @@ export class FigurineService {
     countAllFigurines(filter?: string): Observable<number> {
         let params = new HttpParams();
         if (filter) {
-            params = params.set('Nom_contains', filter);
+            params = params.set('_contains', filter);
         }
         const options = {
             params
@@ -38,7 +38,7 @@ export class FigurineService {
             .set('_start', pageNumber && pageSize ? (pageNumber * pageSize).toString() : '0')
             .set('_limit', pageSize ? pageSize.toString() : '10');
         if (filter) {
-            params = params.set('name_contains', filter);
+            params = params.set('_contains', filter);
         }
         const options = {
             params
@@ -64,6 +64,21 @@ export class FigurineService {
         );
     }
 
+    getMyCollection(sortBy?: string, sortDirection?: string, startFigurine?: number, nbrFigurines?: number): Observable<Figurine[]> {
+        let params = new HttpParams()
+            .set('_sort', sortBy ? sortBy : 'createdAt')
+            .set('_direction', sortDirection ? sortDirection : 'DESC')
+            .set('_start', startFigurine ? (startFigurine).toString() : '0')
+            .set('_limit', nbrFigurines ? nbrFigurines.toString() : '20');
+        const options = {
+            params
+        };
+
+        return this.http.get(this.authUrl + '/figurines/collection/me', options).pipe(
+            map((res: any) => res)
+        );
+    }
+
     getFigurinesExport(): Observable<Figurine[]> {
         return this.http.get(this.authUrl + '/figurines/export').pipe(
             map((res: any) => res)
@@ -78,16 +93,6 @@ export class FigurineService {
 
     makeFormData(figurine: Figurine): FormData {
         const formData = new FormData();
-        formData.append('name', figurine.name);
-        formData.append('description', figurine.description);
-        formData.append('publisher', figurine.publisher);
-        formData.append('artist', figurine.artist);
-        formData.append('game', figurine.game);
-        formData.append('material', figurine.material);
-        formData.append('scale', figurine.scale);
-        formData.append('price', String(figurine.price));
-        formData.append('rating', String(figurine.rating));
-        formData.append('year', String(figurine.year));
         formData.append('img_figurine', figurine.img_figurine);
         // For delete old img
         if (figurine.img_name) {
@@ -97,12 +102,18 @@ export class FigurineService {
     }
 
     addFigurine(figurine: Figurine): Observable<Figurine> {
-        return this.http.post(this.authUrl + '/figurines', this.makeFormData(figurine)).pipe(
+        return this.http.post(this.authUrl + '/figurines', figurine).pipe(
             map((newFigurine: any) => newFigurine)
         );
     }
 
     editFigurine(idFigurine: string, figurine: Figurine): Observable<Figurine> {
+        return this.http.put(this.authUrl + '/figurines/' + idFigurine, figurine).pipe(
+            map((newFigurine: any) => newFigurine)
+        );
+    }
+
+    editFigurineImage(idFigurine: string, figurine: Figurine): Observable<Figurine> {
         return this.http.put(this.authUrl + '/figurines/' + idFigurine, this.makeFormData(figurine)).pipe(
             map((newFigurine: any) => newFigurine)
         );

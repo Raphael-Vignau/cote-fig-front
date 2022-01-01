@@ -29,6 +29,7 @@ import {FigurineDetailsComponent} from "./figurine/figurine-details/figurine-det
 import {MatChipsModule} from "@angular/material/chips";
 import {CollectionComponent} from "./user/collection/collection.component";
 import {WishlistComponent} from "./user/wishlist/wishlist.component";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 registerLocaleData(localeFr);
 
@@ -64,7 +65,8 @@ registerLocaleData(localeFr);
         MatCardModule,
         MatIconModule,
         MatMenuModule,
-        MatChipsModule
+        MatChipsModule,
+        MatToolbarModule
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},

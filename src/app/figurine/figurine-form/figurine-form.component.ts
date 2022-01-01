@@ -66,8 +66,8 @@ export class FigurineFormComponent implements OnInit, AfterViewInit {
         this.materialCtrl = fb.control('', Validators.maxLength(60));
         this.scaleCtrl = fb.control('', Validators.maxLength(60));
         this.publisherCtrl = fb.control('', Validators.maxLength(60));
-        this.priceCtrl = fb.control('', [Validators.maxLength(10)]);
-        this.yearCtrl = fb.control('', [Validators.maxLength(4)]);
+        this.priceCtrl = fb.control(0, [Validators.maxLength(10)]);
+        this.yearCtrl = fb.control(0, [Validators.maxLength(4)]);
         this.img_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSize)]);
         this.tagsCtrl = fb.array([]);
 

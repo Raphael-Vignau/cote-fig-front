@@ -119,19 +119,19 @@ export class FigurineService {
     addFigurine(figurine: Figurine): Observable<Figurine> {
         return this.http.post(this.authUrl + '/figurines', figurine).pipe(
             map((newFigurine: any) => newFigurine)
-        );
+        )
     }
 
     editFigurine(idFigurine: string, figurine: Figurine): Observable<Figurine> {
         return this.http.put(this.authUrl + '/figurines/' + idFigurine, figurine).pipe(
             map((newFigurine: any) => newFigurine)
-        );
+        )
     }
 
     editFigurineImage(idFigurine: string, figurine: Figurine): Observable<Figurine> {
         return this.http.put(this.authUrl + '/figurines/' + idFigurine, this.makeFormData(figurine)).pipe(
             map((newFigurine: any) => newFigurine)
-        );
+        )
     }
 
     deleteFigurine(idFigurine: string): Observable<void> {

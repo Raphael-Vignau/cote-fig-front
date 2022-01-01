@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FigurineService} from "../services/figurine.service";
 import {Title, Meta} from '@angular/platform-browser';
 import {AuthService} from "../../shared/services/auth.service";
+import {Role} from "../../user/data/Role";
 
 @Component({
     selector: 'app-figurine-details',
@@ -15,6 +16,7 @@ export class FigurineDetailsComponent implements OnInit {
     figurine!: Figurine;
     authUrl = environment.api_base_url;
     logged: boolean = false;
+    isAdmin: boolean = false;
 
     constructor(
         private _authService: AuthService,
@@ -35,7 +37,8 @@ export class FigurineDetailsComponent implements OnInit {
     }
 
     getMe(): void {
-        this.logged = !!this._authService.currentUserValue
+        this.logged = !!this._authService.currentUserValue;
+        this.isAdmin = this._authService.currentUserValue?.role === Role.ADMIN
     }
 
     getFigurine(idFigurine: string): void {

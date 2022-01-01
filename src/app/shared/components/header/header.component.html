@@ -60,6 +60,12 @@
             <span>Connexion</span>
         </button>
         <button mat-menu-item
+                *ngIf="!logged"
+                [routerLink]="['auth/register']">
+            <mat-icon color="primary">how_to_reg</mat-icon>
+            <span>Enregistrement</span>
+        </button>
+        <button mat-menu-item
                 *ngIf="logged"
                 [routerLink]="['dashboard']">
             <mat-icon color="accent">dashboard</mat-icon>

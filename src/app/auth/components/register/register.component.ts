@@ -19,9 +19,8 @@ export class RegisterComponent implements OnInit {
     emailCtrl!: FormControl;
     passwordCtrl!: FormControl;
     passwordRepeatCtrl!: FormControl;
-    telCtrl!: FormControl;
-    captchaCtrl!: FormControl;
-    roleCtrl!: FormControl;
+    // captchaCtrl!: FormControl;
+    // roleCtrl!: FormControl;
 
     constructor(
         private authService: AuthService,
@@ -35,20 +34,18 @@ export class RegisterComponent implements OnInit {
         } else {
             this.usernameCtrl = fb.control('', [Validators.required, Validators.minLength(3)]);
             this.emailCtrl = fb.control('', [Validators.required, Validators.email]);
-            this.passwordCtrl = fb.control('', [Validators.required, Validators.minLength(6)]);
+            this.passwordCtrl = fb.control('', [Validators.required, Validators.minLength(8)]);
             this.passwordRepeatCtrl = fb.control('', Validators.required);
-            this.telCtrl = fb.control('');
             // this.captchaCtrl = fb.control('', Validators.required);
-            this.roleCtrl = fb.control('', [Validators.required]);
+            // this.roleCtrl = fb.control('', [Validators.required]);
 
             this.userForm = fb.group({
                 username: this.usernameCtrl,
                 email: this.emailCtrl,
                 password: this.passwordCtrl,
                 passwordRepeat: this.passwordRepeatCtrl,
-                tel: this.telCtrl,
                 // captcha: this.captchaCtrl,
-                role: this.roleCtrl
+                // role: this.roleCtrl
             }, {
                 validator: MustMatch('password', 'passwordRepeat')
             } as AbstractControlOptions);
@@ -62,7 +59,8 @@ export class RegisterComponent implements OnInit {
         this.authService.register(this.userForm.value).subscribe({
             next: () => {
                 this.router.navigateByUrl('').catch(err => console.error(err));
-                Swal.fire(`User created`).then();
+                // Todo à valider
+                Swal.fire(`Vous allez recevoir un mail de validation`).then();
             },
             error: (error) => {
                 console.error(error);

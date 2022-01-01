@@ -56,12 +56,7 @@ export class AuthService {
         return this._http.post(this.authUrl + '/auth/signup', model).pipe(
             map(
                 (response: any) => {
-                    if (response.access_token) {
-                        this.token = response.access_token;
-                        const payload = this.decodePayloadToken(this.token);
-                        localStorage.setItem(this.tokenKey, this.token);
-                        this.currentUserSubject.next(payload)
-                    }
+                    console.log(response)
                 }
             )
         )
@@ -126,7 +121,12 @@ export class AuthService {
         return this._http.post(this.authUrl + '/auth/confirm', {token}).pipe(
             map(
                 (response: any) => {
-                    console.log(response)
+                    if (response.access_token) {
+                        this.token = response.access_token;
+                        const payload = this.decodePayloadToken(this.token);
+                        localStorage.setItem(this.tokenKey, this.token);
+                        this.currentUserSubject.next(payload)
+                    }
                 }
             )
         );

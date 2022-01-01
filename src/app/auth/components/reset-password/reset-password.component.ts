@@ -33,9 +33,9 @@ export class ResetPasswordComponent implements OnInit {
     onSubmit(): void {
         if (this.userForm.valid) {
             Swal.fire({
-                title: `Validation du mail`,
+                title: `Récupération du mots de passe`,
                 icon: 'info',
-                text: 'Si votre mail est enregistré, vous allez recevoir un mail !',
+                text: 'Si ce mail est enregistré, vous allez recevoir un mail !',
                 showConfirmButton: true
             }).then();
             this.authService.reset(this.userForm.value.email).subscribe({

@@ -19,6 +19,10 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import { AddListButtonComponent } from './components/add-list-button/add-list-button.component';
 import { HoldersListComponent } from './components/holders-list/holders-list.component';
 import { ResearchersListComponent } from './components/researchers-list/researchers-list.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
     declarations: [
@@ -43,7 +47,11 @@ import { ResearchersListComponent } from './components/researchers-list/research
         MatBadgeModule,
         MatChipsModule,
         MatTooltipModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSidenavModule
     ],
     exports: [
         HeaderComponent,

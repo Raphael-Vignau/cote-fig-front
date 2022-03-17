@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Figurine } from "../data/Figurine";
 import { map } from "rxjs/operators";
+import {Tag} from "../../tag/data/tag";
 
 @Injectable({
     providedIn: 'root'
@@ -49,12 +50,15 @@ export class FigurineService {
         );
     }
 
-    getFigurinesForHome(sortBy?: string, sortDirection?: string, startFigurine?: number, nbrFigurines?: number): Observable<Figurine[]> {
+    getFigurinesForHome(tags: Tag[], sortBy?: string, sortDirection?: string, startFigurine?: number, nbrFigurines?: number): Observable<Figurine[]> {
         let params = new HttpParams()
             .set('_sort', sortBy ? sortBy : 'createdAt')
             .set('_direction', sortDirection ? sortDirection : 'DESC')
             .set('_start', startFigurine ? (startFigurine).toString() : '0')
             .set('_limit', nbrFigurines ? nbrFigurines.toString() : '20');
+        if (tags) {
+            params = params.set('_tags', JSON.stringify(tags));
+        }
         const options = {
             params
         };

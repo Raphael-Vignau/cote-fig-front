@@ -1,52 +1,113 @@
-<div class="grid-container">
-    <div
-        class="search-results"
-        infiniteScroll
-        [infiniteScrollDistance]="2"
-        [infiniteScrollThrottle]="50"
-        (scrolled)="onScroll()"
-        [scrollWindow]="true"
-    >
-        <ngx-masonry [options]="masonryOptions">
-            <div class="grid-sizer"></div>
-            <div ngxMasonryItem class="masonry-item" *ngFor="let figurine of figurines">
-                <mat-card routerLink="/figurine/details/{{figurine.id}}">
-                    <img mat-card-image *ngIf="figurine.img_name"
-                         src="{{this.authUrl + '/figurines/file/' + figurine.img_name}}"
-                         alt="Photo of {{figurine.name}}">
-                    <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
-                    <mat-card-title>{{figurine.name}}</mat-card-title>
-                    <mat-card-content>
-                        <p>{{figurine.description}}</p>
-                    </mat-card-content>
-                </mat-card>
-                <div class="onHoverUITop" *ngIf="!wishlist && !collection">
-                    <app-add-list-button class="onHoverButtonHave"
-                                         [idFigurine]="figurine.id"
-                                         [collection]="true"
-                                         [nbrUserAlready]="figurine.holders.length"></app-add-list-button>
-                    <app-add-list-button class="onHoverButtonHave"
-                                         [idFigurine]="figurine.id"
-                                         [wishlist]="true"
-                                         [nbrUserAlready]="figurine.researchers.length"></app-add-list-button>
-                </div>
-                <div class="onHoverUIBottom">
-                    <button class="onHoverButtonDelete"
-                            *ngIf="collection"
-                            color="accent"
-                            (click)="onRemoveCollection(figurine.id)"
-                            mat-raised-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button class="onHoverButtonDelete"
-                            *ngIf="wishlist"
-                            color="accent"
-                            (click)="onRemoveWishlist(figurine.id)"
-                            mat-raised-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
+<mat-drawer-container autosize class="my-backdrop">
+    <mat-drawer #drawer mode="over" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 pt-2">
+                    <mat-form-field appearance="standard">
+                        <mat-label>
+                            <mat-icon>search</mat-icon>
+                            Recherche par tags
+                        </mat-label>
+                        <mat-chip-list #tagsList aria-label="Tags selection">
+                            <mat-chip *ngFor="let tag of tagsSelected; let i = index"
+                                      (removed)="onRemoveTag(i)">
+                                {{tag.name}}
+                                <button matChipRemove>
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip>
+                            <input placeholder="Nouveau tag..."
+                                   #tagInput
+                                   [matAutocomplete]="auto"
+                                   [matChipInputFor]="tagsList"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedTag($event)">
+                            <mat-option *ngFor="let tag of allTags" [value]="tag">
+                                {{tag.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
                 </div>
             </div>
-        </ngx-masonry>
+        </div>
+    </mat-drawer>
+
+    <div>
+        <button type="button" mat-button (click)="drawer.toggle()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <div class="grid-container">
+            <div
+                class="search-results"
+                infiniteScroll
+                [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="50"
+                (scrolled)="onScroll()"
+                [scrollWindow]="true"
+            >
+                <!--        <ul class="mdc-image-list mdc-image-list&#45;&#45;masonry my-masonry-image-list">-->
+                <!--            <li class="mdc-image-list__item" *ngFor="let figurine of figurines" routerLink="/figurine/details/{{figurine.id}}">-->
+
+                <!--                <img class="mdc-image-list__image" src="{{this.authUrl + '/figurines/file/' + figurine.img_name}}" alt="Photo of {{figurine.name}}">-->
+                <!--                <div class="mdc-image-list__supporting">-->
+                <!--                    <span class="mdc-image-list__label">{{figurine.description}}</span>-->
+                <!--                </div>-->
+                <!--            </li>-->
+                <!--        </ul>-->
+
+                <!--        <mat-grid-list cols="4" >-->
+                <!--            <mat-grid-tile-->
+                <!--                *ngFor="let figurine of figurines">-->
+                <!--                <img class="mdc-image-list__image" src="{{this.authUrl + '/figurines/file/' + figurine.img_name}}" alt="Photo of {{figurine.name}}">-->
+                <!--            </mat-grid-tile>-->
+                <!--        </mat-grid-list>-->
+
+                <ngx-masonry [options]="masonryOptions">
+                    <div class="grid-sizer"></div>
+                    <div ngxMasonryItem class="masonry-item" *ngFor="let figurine of figurines">
+                        <mat-card routerLink="/figurine/details/{{figurine.id}}">
+                            <img mat-card-image *ngIf="figurine.img_name"
+                                 src="{{this.authUrl + '/figurines/file/' + figurine.img_name}}"
+                                 alt="Photo of {{figurine.name}}">
+                            <mat-icon *ngIf="!figurine.img_name">add_circle_outline</mat-icon>
+                            <mat-card-title>{{figurine.name}}</mat-card-title>
+                            <mat-card-content>
+                                <p>{{figurine.description}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                        <div class="onHoverUITop" *ngIf="!wishlist && !collection">
+                            <app-add-list-button class="onHoverButtonHave"
+                                                 [idFigurine]="figurine.id"
+                                                 [collection]="true"
+                                                 [nbrUserAlready]="figurine.holders.length"></app-add-list-button>
+                            <app-add-list-button class="onHoverButtonHave"
+                                                 [idFigurine]="figurine.id"
+                                                 [wishlist]="true"
+                                                 [nbrUserAlready]="figurine.researchers.length"></app-add-list-button>
+                        </div>
+                        <div class="onHoverUIBottom">
+                            <button class="onHoverButtonDelete"
+                                    *ngIf="collection"
+                                    color="accent"
+                                    (click)="onRemoveCollection(figurine.id)"
+                                    mat-raised-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button class="onHoverButtonDelete"
+                                    *ngIf="wishlist"
+                                    color="accent"
+                                    (click)="onRemoveWishlist(figurine.id)"
+                                    mat-raised-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </ngx-masonry>
+            </div>
+        </div>
     </div>
-</div>
+</mat-drawer-container>
+
+
+

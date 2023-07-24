@@ -28,7 +28,7 @@
     "@types/leaflet-routing-machine": "^3.2.3",
     "ajv": "^8.6.1",
     "angular-csv-ext": "^1.0.5",
-    "angular-highcharts": "^12.0.0",
+    "angular-highcharts": "^14.0.0",
     "bootstrap": "^5.0.2",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",

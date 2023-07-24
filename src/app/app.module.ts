@@ -15,7 +15,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./_helpers/error.interceptor";
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
 import {ContactComponent} from './pages/contact/contact.component';
-import {YouTubePlayerModule} from "@angular/youtube-player";
 import {MatButtonModule} from "@angular/material/button";
 import {ToastrModule} from "ngx-toastr";
 import {MatCardModule} from "@angular/material/card";
@@ -60,7 +59,6 @@ registerLocaleData(localeFr);
         HttpClientModule,
         AppRoutingModule,
         // NgbModule,
-        YouTubePlayerModule,
         MatButtonModule,
         MatCardModule,
         MatIconModule,

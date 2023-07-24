@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../shared/services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
@@ -10,13 +10,13 @@ import {ToastrService} from "ngx-toastr";
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    userForm!: FormGroup;
-    emailCtrl!: FormControl;
-    passwordCtrl!: FormControl;
+    userForm!: UntypedFormGroup;
+    emailCtrl!: UntypedFormControl;
+    passwordCtrl!: UntypedFormControl;
 
     constructor(
         private authService: AuthService,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private toastr: ToastrService,
         public router: Router,
         public route: ActivatedRoute

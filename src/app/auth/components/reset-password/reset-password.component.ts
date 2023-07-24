@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../shared/services/auth.service";
@@ -12,11 +12,11 @@ import Swal from "sweetalert2";
     styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-    userForm!: FormGroup;
-    emailCtrl!: FormControl;
+    userForm!: UntypedFormGroup;
+    emailCtrl!: UntypedFormControl;
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private authService: AuthService,
         private toastr: ToastrService,
         public router: Router

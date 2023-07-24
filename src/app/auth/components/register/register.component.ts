@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
@@ -14,17 +14,17 @@ import {ToastrService} from "ngx-toastr";
 })
 export class RegisterComponent implements OnInit {
     user!: User;
-    userForm!: FormGroup;
-    usernameCtrl!: FormControl;
-    emailCtrl!: FormControl;
-    passwordCtrl!: FormControl;
-    passwordRepeatCtrl!: FormControl;
+    userForm!: UntypedFormGroup;
+    usernameCtrl!: UntypedFormControl;
+    emailCtrl!: UntypedFormControl;
+    passwordCtrl!: UntypedFormControl;
+    passwordRepeatCtrl!: UntypedFormControl;
     // captchaCtrl!: FormControl;
     // roleCtrl!: FormControl;
 
     constructor(
         private authService: AuthService,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         public router: Router,
         private toastr: ToastrService,
     ) {

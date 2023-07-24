@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../data/User";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {Role} from "../data/Role";
@@ -16,17 +16,17 @@ import {AuthService} from "../../shared/services/auth.service";
 export class UserFormComponent implements OnInit {
     @Input() user!: User | null;
     @Input() profile!: boolean;
-    userForm: FormGroup;
+    userForm: UntypedFormGroup;
     roles = Object.values(Role);
     isAdmin = false;
 
-    usernameCtrl: FormControl;
-    telCtrl!: FormControl;
-    emailCtrl: FormControl;
-    roleCtrl: FormControl;
+    usernameCtrl: UntypedFormControl;
+    telCtrl!: UntypedFormControl;
+    emailCtrl: UntypedFormControl;
+    roleCtrl: UntypedFormControl;
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private userService: UserService,
         private authService: AuthService,
         private toastr: ToastrService,

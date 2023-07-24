@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../shared/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -12,14 +12,14 @@ import {MustMatch} from "../../../shared/must-match.validator";
     styleUrls: ['./new-password.component.css']
 })
 export class NewPasswordComponent implements OnInit {
-    userForm!: FormGroup;
-    passwordCtrl!: FormControl;
-    passwordRepeatCtrl: FormControl;
+    userForm!: UntypedFormGroup;
+    passwordCtrl!: UntypedFormControl;
+    passwordRepeatCtrl: UntypedFormControl;
     resetToken?: string;
     welcome?: boolean
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private authService: AuthService,
         public router: Router,
         private toastr: ToastrService,

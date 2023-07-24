@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {
     AbstractControlOptions,
-    FormArray,
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormArray,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
@@ -31,28 +31,28 @@ export class FigurineFormComponent implements OnInit, AfterViewInit {
     @Input() idFigurine!: string | null;
     classFigurine: string = 'col-md-12';
     authUrl = environment.api_base_url;
-    figurineForm: FormGroup;
+    figurineForm: UntypedFormGroup;
     figurine!: Figurine;
     readonly maxSize: number = 104857600;
     separatorKeysCodes: number[] = [ENTER, COMMA];
     allTags!: Array<Tag>;
 
-    nameCtrl: FormControl;
-    descriptionCtrl: FormControl;
-    artistCtrl: FormControl;
-    gameCtrl: FormControl;
-    materialCtrl: FormControl;
-    scaleCtrl: FormControl;
-    publisherCtrl: FormControl;
-    priceCtrl: FormControl;
-    yearCtrl: FormControl;
-    img_figurineCtrl: FormControl;
-    tagsCtrl: FormArray;
+    nameCtrl: UntypedFormControl;
+    descriptionCtrl: UntypedFormControl;
+    artistCtrl: UntypedFormControl;
+    gameCtrl: UntypedFormControl;
+    materialCtrl: UntypedFormControl;
+    scaleCtrl: UntypedFormControl;
+    publisherCtrl: UntypedFormControl;
+    priceCtrl: UntypedFormControl;
+    yearCtrl: UntypedFormControl;
+    img_figurineCtrl: UntypedFormControl;
+    tagsCtrl: UntypedFormArray;
 
     @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private figurineService: FigurineService,
         private tagService: TagService,
         private toastr: ToastrService,
@@ -107,7 +107,7 @@ export class FigurineFormComponent implements OnInit, AfterViewInit {
     }
 
     get tagsArr() {
-        return this.figurineForm.get('tags') as FormArray;
+        return this.figurineForm.get('tags') as UntypedFormArray;
     }
 
     getFigurine(idFigurine: string): void {
@@ -140,7 +140,7 @@ export class FigurineFormComponent implements OnInit, AfterViewInit {
     }
 
     setTags() {
-        let tagForm: FormGroup;
+        let tagForm: UntypedFormGroup;
         this.figurine.tags.map(
             tag => {
                 tagForm = this.fb.group({

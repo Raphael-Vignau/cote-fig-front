@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from "./pages/home/home.component";
 import {AuthService} from "./shared/services/auth.service";
 import {LoggedInGuardService} from "./shared/services/logged-in-guard.service";
-import {FormBuilder} from "@angular/forms";
+import {UntypedFormBuilder} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./_helpers/error.interceptor";
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
@@ -75,7 +75,7 @@ registerLocaleData(localeFr);
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
         AuthService,
         LoggedInGuardService,
-        FormBuilder,
+        UntypedFormBuilder,
         MatSnackBar
     ],
     bootstrap: [AppComponent]

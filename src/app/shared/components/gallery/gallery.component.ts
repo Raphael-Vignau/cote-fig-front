@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import {FigurineService} from "../../../figurine/services/figurine.service";
 import {Figurine} from "../../../figurine/data/Figurine";
 import {environment} from "../../../../environments/environment";
-import {NgxMasonryComponent, NgxMasonryOptions} from "ngx-masonry";
 import {UserService} from "../../../user/services/user.service";
 import {ToastrService} from "ngx-toastr";
 import {fromEvent, of} from "rxjs";
@@ -28,17 +27,17 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     figurines: Figurine[] = [];
     authUrl = environment.api_base_url;
     nbrFigurinesTotal: number = 20
-    public masonryOptions: NgxMasonryOptions = {
-        columnWidth: '.masonry-item',
-        itemSelector: '.masonry-item',
-        fitWidth: true,
-        gutter: 10,
-        resize: true,
-        initLayout: true,
-        horizontalOrder: true
-    };
+    // public masonryOptions: NgxMasonryOptions = {
+    //     columnWidth: '.masonry-item',
+    //     itemSelector: '.masonry-item',
+    //     fitWidth: true,
+    //     gutter: 10,
+    //     resize: true,
+    //     initLayout: true,
+    //     horizontalOrder: true
+    // };
 
-    @ViewChild(NgxMasonryComponent) masonry!: NgxMasonryComponent;
+    // @ViewChild(NgxMasonryComponent) masonry!: NgxMasonryComponent;
 
     constructor(
         private figurineService: FigurineService,

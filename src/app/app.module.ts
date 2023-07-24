@@ -52,7 +52,7 @@ registerLocaleData(localeFr);
             countDuplicates: true,
             resetTimeoutOnDuplicate: true
         }),
-        SweetAlert2Module.forRoot(),
+        // SweetAlert2Module.forRoot(),
         AuthModule,
         SharedModule,
         RouterModule,

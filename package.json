@@ -30,7 +30,6 @@
     "angular-csv-ext": "^1.0.5",
     "angular-highcharts": "^12.0.0",
     "bootstrap": "^5.0.2",
-    "highcharts": "^9.3.0",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
     "lrm-mapbox": "^1.0.4",

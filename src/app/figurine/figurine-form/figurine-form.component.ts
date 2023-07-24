@@ -12,7 +12,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {Figurine} from "../data/Figurine";
 import {FigurineService} from "../services/figurine.service";
-import {FileValidator} from "ngx-material-file-input";
 import {imageFile} from "../../shared/image-file.validator";
 import {Tag} from "../../tag/data/tag";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -68,7 +67,7 @@ export class FigurineFormComponent implements OnInit, AfterViewInit {
         this.publisherCtrl = fb.control('', Validators.maxLength(60));
         this.priceCtrl = fb.control(0, [Validators.maxLength(10)]);
         this.yearCtrl = fb.control(0, [Validators.maxLength(4)]);
-        this.img_figurineCtrl = fb.control(null, [FileValidator.maxContentSize(this.maxSize)]);
+        this.img_figurineCtrl = fb.control(null);
         this.tagsCtrl = fb.array([]);
 
         this.figurineForm = fb.group({

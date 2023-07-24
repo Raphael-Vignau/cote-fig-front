@@ -161,18 +161,18 @@
                       (ngSubmit)="onSubmit()">
                     <mat-form-field appearance="outline" class="mt-2">
                         <mat-label>Image de la figurine</mat-label>
-                        <ngx-mat-file-input formControlName="img_figurine"
+                        <!-- <ngx-mat-file-input formControlName="img_figurine"
                                             [accept]="'.png, .jpg, .jpeg'"
-                                            valuePlaceholder="{{this.figurine && this.figurine.img_original_name ? this.figurine.img_original_name : null}}">
-                        </ngx-mat-file-input>
+                                            valuePlaceholder="{{this.figurine && this.figurine.img_original_name ? this.figurine.img_original_name : null}}"> -->
+                        <!-- </ngx-mat-file-input> -->
                         <mat-icon matSuffix color="accent">folder</mat-icon>
                         <mat-hint>PNG ou JPG ou JPEG</mat-hint>
-                        <mat-error *ngIf="img_figurineCtrl.touched && img_figurineCtrl.hasError('maxContentSize')">
+                        <!-- <mat-error *ngIf="img_figurineCtrl.touched && img_figurineCtrl.hasError('maxContentSize')">
                             La taille du fichier ne doit pas
                             dépasser {{img_figurineCtrl?.getError('maxContentSize').maxSize | byteFormat}}
                             ({{img_figurineCtrl?.getError('maxContentSize').actualSize
                             | byteFormat}}).
-                        </mat-error>
+                        </mat-error> -->
                         <mat-error *ngIf="img_figurineCtrl.touched && img_figurineCtrl.hasError('imageFile')">
                             Le type de fichier doit-être : PNG ou JPG ou JPEG.
                         </mat-error>

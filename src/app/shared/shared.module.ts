@@ -11,7 +11,6 @@ import {FooterComponent} from './components/footer/footer.component';
 import {GalleryComponent} from './components/gallery/gallery.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCardModule} from "@angular/material/card";
-import {NgxMasonryModule} from "ngx-masonry";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatTooltipModule} from "@angular/material/tooltip";
@@ -43,7 +42,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         MatToolbarModule,
         MatGridListModule,
         MatCardModule,
-        NgxMasonryModule,
         MatBadgeModule,
         MatChipsModule,
         MatTooltipModule,

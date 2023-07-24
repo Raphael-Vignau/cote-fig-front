@@ -15,7 +15,6 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MaterialFileInputModule} from "ngx-material-file-input";
 import {FigurineFormComponent} from './figurine-form/figurine-form.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
@@ -44,7 +43,6 @@ import {MatBadgeModule} from "@angular/material/badge";
         MatProgressBarModule,
         MatSelectModule,
         ReactiveFormsModule,
-        MaterialFileInputModule,
         MatToolbarModule,
         MatCardModule,
         MatChipsModule,

@@ -8,7 +8,7 @@ import {fromEvent, of} from "rxjs";
 import {catchError, debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {Tag} from "../../../tag/data/tag";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent} from "@angular/material/legacy-autocomplete";
 import {TagService} from "../../../tag/services/tag.service";
 
 @Component({

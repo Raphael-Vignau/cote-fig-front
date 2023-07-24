@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UsersDataSource} from "../data/users-data-source";
-import {MatPaginator} from "@angular/material/paginator";
+import {MatLegacyPaginator as MatPaginator} from "@angular/material/legacy-paginator";
 import {MatSort} from "@angular/material/sort";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";

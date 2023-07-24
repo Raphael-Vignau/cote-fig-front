@@ -6,12 +6,12 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
 import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
-import {MatSelectModule} from "@angular/material/select";
+import {MatLegacySelectModule as MatSelectModule} from "@angular/material/legacy-select";
 import {NewPasswordComponent} from './components/new-password/new-password.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 

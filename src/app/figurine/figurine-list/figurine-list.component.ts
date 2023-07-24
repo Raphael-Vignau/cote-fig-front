@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
 import { FigurineService } from "../services/figurine.service";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
 import { MatSort } from "@angular/material/sort";
 import { FigurinesDataSource } from "../data/figurines-data-source";
 import { fromEvent, merge } from "rxjs";

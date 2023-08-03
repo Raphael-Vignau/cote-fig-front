@@ -3,11 +3,16 @@ import {UserService} from "../../../user/services/user.service";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-add-list-button',
     templateUrl: './add-list-button.component.html',
-    styleUrls: ['./add-list-button.component.css']
+    styleUrls: ['./add-list-button.component.css'],
+    standalone: true,
+    imports: [MatButtonModule, MatBadgeModule, MatIconModule]
 })
 export class AddListButtonComponent implements OnInit {
     @Input() idFigurine!: string;

@@ -1,18 +1,28 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from "ngx-toastr";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { FigurineService } from "../services/figurine.service";
 import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
-import { MatSort } from "@angular/material/sort";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 import { FigurinesDataSource } from "../data/figurines-data-source";
 import { fromEvent, merge } from "rxjs";
 import { debounceTime, distinctUntilChanged, tap } from "rxjs/operators";
 import Swal from "sweetalert2";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgIf, AsyncPipe, CurrencyPipe } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-figurine-list',
     templateUrl: './figurine-list.component.html',
-    styleUrls: ['./figurine-list.component.css']
+    styleUrls: ['./figurine-list.component.css'],
+    standalone: true,
+    imports: [MatToolbarModule, MatButtonModule, RouterLink, MatIconModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, NgIf, MatProgressBarModule, AsyncPipe, CurrencyPipe]
 })
 export class FigurineListComponent implements OnInit, AfterViewInit {
     figurines!: FigurinesDataSource;

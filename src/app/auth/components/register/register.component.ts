@@ -1,16 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthService} from '../../../shared/services/auth.service';
 import Swal from 'sweetalert2';
-import {Router} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {User} from '../../../user/data/User';
 import {MustMatch} from "../../../shared/must-match.validator";
 import {ToastrService} from "ngx-toastr";
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+    styleUrls: ['./register.component.css'],
+    standalone: true,
+    imports: [MatToolbarModule, MatButtonModule, RouterLink, MatIconModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf]
 })
 export class RegisterComponent implements OnInit {
     user!: User;

@@ -1,15 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import { AbstractControlOptions, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {AuthService} from "../../../shared/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {MustMatch} from "../../../shared/must-match.validator";
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-new-password',
     templateUrl: './new-password.component.html',
-    styleUrls: ['./new-password.component.css']
+    styleUrls: ['./new-password.component.css'],
+    standalone: true,
+    imports: [MatToolbarModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatButtonModule]
 })
 export class NewPasswordComponent implements OnInit {
     userForm!: UntypedFormGroup;

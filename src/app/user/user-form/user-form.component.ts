@@ -1,17 +1,25 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../data/User";
-import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import {UserService} from "../services/user.service";
 import {Role} from "../data/Role";
 import {ToastrService} from "ngx-toastr";
 import Swal from "sweetalert2";
 import {AuthService} from "../../shared/services/auth.service";
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { NgIf, NgFor } from '@angular/common';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 
 @Component({
     selector: 'app-user-form',
     templateUrl: './user-form.component.html',
-    styleUrls: ['./user-form.component.css']
+    styleUrls: ['./user-form.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, NgIf, MatLegacySelectModule, NgFor, MatLegacyOptionModule, MatLegacyButtonModule, RouterLink]
 })
 export class UserFormComponent implements OnInit {
     @Input() user!: User | null;

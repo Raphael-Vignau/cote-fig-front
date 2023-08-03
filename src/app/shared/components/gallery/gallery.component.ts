@@ -1,20 +1,30 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {FigurineService} from "../../../figurine/services/figurine.service";
-import {Figurine} from "../../../figurine/data/Figurine";
-import {environment} from "../../../../environments/environment";
-import {UserService} from "../../../user/services/user.service";
-import {ToastrService} from "ngx-toastr";
-import {fromEvent, of} from "rxjs";
-import {catchError, debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
-import {Tag} from "../../../tag/data/tag";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent} from "@angular/material/legacy-autocomplete";
-import {TagService} from "../../../tag/services/tag.service";
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FigurineService } from "../../../figurine/services/figurine.service";
+import { Figurine } from "../../../figurine/data/Figurine";
+import { environment } from "../../../../environments/environment";
+import { UserService } from "../../../user/services/user.service";
+import { ToastrService } from "ngx-toastr";
+import { fromEvent, of } from "rxjs";
+import { catchError, debounceTime, distinctUntilChanged, tap } from "rxjs/operators";
+import { Tag } from "../../../tag/data/tag";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
+import { TagService } from "../../../tag/services/tag.service";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { NgFor } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-gallery',
     templateUrl: './gallery.component.html',
-    styleUrls: ['./gallery.component.css']
+    styleUrls: ['./gallery.component.css'],
+    standalone: true,
+    imports: [MatSidenavModule, MatFormFieldModule, MatIconModule, MatAutocompleteModule, NgFor, MatOptionModule, MatButtonModule, InfiniteScrollModule]
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
     @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
@@ -92,8 +102,8 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     getAllTags() {
         this.tagService.getTags(this.tagInput?.nativeElement.value)
             .pipe(catchError(() => of([]))).subscribe(
-            (tags: Tag[]) => this.allTags = tags
-        )
+                (tags: Tag[]) => this.allTags = tags
+            )
     }
 
     onSelectedTag(event: MatAutocompleteSelectedEvent): void {
@@ -112,7 +122,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
 
     onRemoveTag(index: number): void {
         if (index >= 0) {
-            this.tagsSelected.splice(index,1);
+            this.tagsSelected.splice(index, 1);
             this.figurines = [];
             this.getFigurines(this.tagsSelected)
         }

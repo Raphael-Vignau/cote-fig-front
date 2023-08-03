@@ -6,11 +6,19 @@ import {FigurineService} from "../services/figurine.service";
 import {Title, Meta} from '@angular/platform-browser';
 import {AuthService} from "../../shared/services/auth.service";
 import {Role} from "../../user/data/Role";
+import { ResearchersListComponent } from '../../shared/components/researchers-list/researchers-list.component';
+import { HoldersListComponent } from '../../shared/components/holders-list/holders-list.component';
+import { AddListButtonComponent } from '../../shared/components/add-list-button/add-list-button.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-figurine-details',
     templateUrl: './figurine-details.component.html',
-    styleUrls: ['./figurine-details.component.css']
+    styleUrls: ['./figurine-details.component.css'],
+    standalone: true,
+    imports: [NgIf, MatCardModule, MatIconModule, AddListButtonComponent, HoldersListComponent, ResearchersListComponent]
 })
 export class FigurineDetailsComponent implements OnInit {
     figurine!: Figurine;

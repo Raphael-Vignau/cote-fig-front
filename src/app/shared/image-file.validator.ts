@@ -1,4 +1,4 @@
-import {AbstractControl} from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 // custom validator to check type image file
 export function imageFile(controlName: string) {
@@ -17,7 +17,7 @@ export function imageFile(controlName: string) {
             control.setErrors(null);
         } else {
             if (control && control.value && control.value._fileNames) {
-                control.setErrors({imageFile: true});
+                control.setErrors({ imageFile: true });
             }
         }
     }

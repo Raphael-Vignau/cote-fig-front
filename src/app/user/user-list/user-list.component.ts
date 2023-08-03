@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UsersDataSource} from "../data/users-data-source";
-import {MatLegacyPaginator as MatPaginator} from "@angular/material/legacy-paginator";
-import {MatSort} from "@angular/material/sort";
+import { MatLegacyPaginator as MatPaginator, MatLegacyPaginatorModule } from "@angular/material/legacy-paginator";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 import {UserService} from "../services/user.service";
-import {Router} from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
@@ -11,11 +11,20 @@ import Swal from "sweetalert2";
 import {UserStatus} from "../data/user.status";
 import {Role} from "../data/Role";
 import {AuthService} from "../../shared/services/auth.service";
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { MatLegacyTableModule } from '@angular/material/legacy-table';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-user-list',
     templateUrl: './user-list.component.html',
-    styleUrls: ['./user-list.component.css']
+    styleUrls: ['./user-list.component.css'],
+    standalone: true,
+    imports: [MatToolbarModule, MatLegacyButtonModule, RouterLink, MatIconModule, MatLegacyInputModule, MatLegacyTableModule, MatSortModule, NgIf, MatLegacyPaginatorModule, MatLegacyProgressBarModule, AsyncPipe]
 })
 export class UserListComponent implements OnInit, AfterViewInit {
     users!: UsersDataSource;

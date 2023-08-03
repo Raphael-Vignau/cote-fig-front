@@ -1,14 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {
-    AbstractControlOptions,
-    UntypedFormArray,
-    UntypedFormBuilder,
-    UntypedFormControl,
-    UntypedFormGroup,
-    Validators
-} from "@angular/forms";
+import { AbstractControlOptions, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {Figurine} from "../data/Figurine";
 import {FigurineService} from "../services/figurine.service";
@@ -20,11 +13,21 @@ import {MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent} from
 import {fromEvent, of} from "rxjs";
 import {TagService} from "../../tag/services/tag.service";
 import {catchError, debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgIf, NgFor } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
     selector: 'app-figurine-form',
     templateUrl: './figurine-form.component.html',
-    styleUrls: ['./figurine-form.component.css']
+    styleUrls: ['./figurine-form.component.css'],
+    standalone: true,
+    imports: [MatCardModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatAutocompleteModule, NgFor, MatOptionModule, MatButtonModule, RouterLink, MatIconModule]
 })
 export class FigurineFormComponent implements OnInit, AfterViewInit {
     @Input() idFigurine!: string | null;

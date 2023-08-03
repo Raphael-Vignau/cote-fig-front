@@ -1,15 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../shared/services/auth.service";
 import {ToastrService} from "ngx-toastr";
 import Swal from "sweetalert2";
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-reset-password',
     templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.css']
+    styleUrls: ['./reset-password.component.css'],
+    standalone: true,
+    imports: [MatToolbarModule, MatButtonModule, RouterLink, MatIconModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf]
 })
 export class ResetPasswordComponent implements OnInit {
     userForm!: UntypedFormGroup;

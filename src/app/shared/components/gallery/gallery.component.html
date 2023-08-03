@@ -3,12 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 pt-2">
-                    <mat-form-field appearance="standard">
+                    <mat-form-field >
                         <mat-label>
                             <mat-icon>search</mat-icon>
                             Recherche par tags
                         </mat-label>
-                        <mat-chip-list #tagsList aria-label="Tags selection">
+                        <!-- <mat-chip-list #tagsList aria-label="Tags selection">
                             <mat-chip *ngFor="let tag of tagsSelected; let i = index"
                                       (removed)="onRemoveTag(i)">
                                 {{tag.name}}
@@ -21,7 +21,7 @@
                                    [matAutocomplete]="auto"
                                    [matChipInputFor]="tagsList"
                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
-                        </mat-chip-list>
+                        </mat-chip-list> -->
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedTag($event)">
                             <mat-option *ngFor="let tag of allTags" [value]="tag">
                                 {{tag.name}}

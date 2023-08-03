@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {User} from '../../user/data/User';
-import {Role} from "../../user/data/Role";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { User } from '../../user/data/User';
+import { Role } from "../../user/data/Role";
 
 @Injectable({
     providedIn: 'root'
@@ -69,7 +69,7 @@ export class AuthService {
     }
 
     reset(email: string): Observable<any> {
-        return this._http.post(this.authUrl + '/auth/reset', {email}).pipe(
+        return this._http.post(this.authUrl + '/auth/reset', { email }).pipe(
             map(
                 (response: any) => {
                     console.log(response)
@@ -81,18 +81,18 @@ export class AuthService {
     updatePassword(token: string, password: string) {
         return this._http.put(
             this.authUrl + '/users/me',
-            {password},
+            { password },
             {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).pipe(
-            map(
-                (response: any) => {
-                    console.log(response)
-                }
+                map(
+                    (response: any) => {
+                        console.log(response)
+                    }
+                )
             )
-        )
     }
 
     decodePayloadToken(token: string) {
@@ -118,7 +118,7 @@ export class AuthService {
     }
 
     confirm(token: string): Observable<any> {
-        return this._http.post(this.authUrl + '/auth/confirm', {token}).pipe(
+        return this._http.post(this.authUrl + '/auth/confirm', { token }).pipe(
             map(
                 (response: any) => {
                     if (response.access_token) {

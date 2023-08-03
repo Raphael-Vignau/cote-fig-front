@@ -1,22 +1,24 @@
 <mat-toolbar color="primary">
-    <h1>Identification</h1>
+    <h2>Identification</h2>
 
     <span class="spacer"></span>
 
-    <button mat-stroked-button
+    <button mat-mini-fab
+            color="accent"
             class="m-lg-2"
             routerLink=""
             aria-label="icon-button">
         <mat-icon>arrow_back</mat-icon>
     </button>
 </mat-toolbar>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 mt-4">
             <form [formGroup]="userForm"
                   (ngSubmit)="onSubmit()">
 
-                <mat-form-field appearance="standard"
+                <mat-form-field
                                 color="accent">
                     <mat-label>Email</mat-label>
                     <input matInput
@@ -30,7 +32,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="standard"
+                <mat-form-field
                                 color="accent">
                     <mat-label>Mots de passe</mat-label>
                     <input matInput

@@ -1,85 +1,75 @@
 <mat-toolbar color="primary" class="toolbar-primary shadow">
-    <button mat-stroked-button
-            class="m-lg-2"
-            [routerLink]="['']"
-            aria-label="icon-button">
-        <img alt="logo-cote-fig" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8E%B2%3C%2Ftext%3E%3C%2Fsvg%3E">
+    <div [routerLink]="['']">
         <h1>COTE-FIG</h1>
-    </button>
+    </div>
 
     <span class="spacer"></span>
 
-    <button mat-stroked-button
-            class="m-lg-2"
-            *ngIf="logged"
-            [routerLink]="['collection']"
-            aria-label="icon-button">
+    <button
+        mat-stroked-button
+        class="m-lg-2"
+        *ngIf="logged"
+        [routerLink]="['collection']"
+        aria-label="icon-button"
+    >
         <mat-icon>playlist_add_check</mat-icon>
     </button>
 
-    <button mat-stroked-button
-            class="m-lg-2"
-            *ngIf="logged"
-            [routerLink]="['wishlist']"
-            aria-label="icon-button">
+    <button
+        mat-stroked-button
+        class="m-lg-2"
+        *ngIf="logged"
+        [routerLink]="['wishlist']"
+        aria-label="icon-button"
+    >
         <mat-icon>favorite</mat-icon>
     </button>
 
-    <button mat-stroked-button
-            *ngIf="roleAdmin"
-            [matMenuTriggerFor]="menuAdmin"
-            aria-label="icon-button">
+    <button
+        mat-stroked-button
+        *ngIf="roleAdmin"
+        [matMenuTriggerFor]="menuAdmin"
+        aria-label="icon-button"
+    >
         <mat-icon>settings</mat-icon>
     </button>
     <mat-menu #menuAdmin="matMenu">
-        <button mat-menu-item
-                *ngIf="roleAdmin"
-                [routerLink]="['user']">
+        <button mat-menu-item *ngIf="roleAdmin" [routerLink]="['user']">
             <mat-icon color="accent">people</mat-icon>
             <span>Utilisateurs</span>
         </button>
-        <button mat-menu-item
-                *ngIf="roleAdmin"
-                [routerLink]="['figurine']">
+        <button mat-menu-item *ngIf="roleAdmin" [routerLink]="['figurine']">
             <mat-icon color="accent">smart_toy</mat-icon>
             <span>Figurine</span>
         </button>
     </mat-menu>
 
-    <button mat-stroked-button
-            class="m-lg-2"
-            [matMenuTriggerFor]="menuAccount"
-            aria-label="icon-button">
+    <button
+        mat-fab
+        class="m-lg-2"
+        [matMenuTriggerFor]="menuAccount"
+        aria-label="icon-button"
+    >
         <mat-icon>perm_identity</mat-icon>
     </button>
     <mat-menu #menuAccount="matMenu">
-        <button mat-menu-item
-                *ngIf="!logged"
-                [routerLink]="['auth/login']">
+        <button mat-menu-item *ngIf="!logged" [routerLink]="['auth/login']">
             <mat-icon color="accent">login</mat-icon>
             <span>Connexion</span>
         </button>
-        <button mat-menu-item
-                *ngIf="!logged"
-                [routerLink]="['auth/register']">
+        <button mat-menu-item *ngIf="!logged" [routerLink]="['auth/register']">
             <mat-icon color="primary">how_to_reg</mat-icon>
             <span>Enregistrement</span>
         </button>
-        <button mat-menu-item
-                *ngIf="logged"
-                [routerLink]="['dashboard']">
+        <button mat-menu-item *ngIf="logged" [routerLink]="['dashboard']">
             <mat-icon color="accent">dashboard</mat-icon>
             <span>Tableau de bord</span>
         </button>
-        <button mat-menu-item
-                *ngIf="logged"
-                [routerLink]="['me']">
+        <button mat-menu-item *ngIf="logged" [routerLink]="['me']">
             <mat-icon color="accent">manage_accounts</mat-icon>
             <span>Profil</span>
         </button>
-        <button mat-menu-item
-                *ngIf="logged"
-                (click)="logout()">
+        <button mat-menu-item *ngIf="logged" (click)="logout()">
             <mat-icon color="warn">logout</mat-icon>
             <span>Déconnexion</span>
         </button>

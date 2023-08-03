@@ -3,7 +3,8 @@
 
     <span class="spacer"></span>
 
-    <button mat-stroked-button
+    <button mat-mini-fab
+            color="accent"
             class="m-lg-2"
             routerLink=""
             aria-label="icon-button">
@@ -13,62 +14,100 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 mt-4">
-            <form [formGroup]="userForm"
-                  (ngSubmit)="onSubmit()">
-
-                <mat-form-field appearance="standard"
-                                color="accent">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <mat-form-field color="accent">
                     <mat-label>Nom de l'utilisateur</mat-label>
-                    <input matInput
-                           formControlName="username"
-                           placeholder="Enter username">
-                    <mat-error *ngIf="usernameCtrl.touched && usernameCtrl.hasError('required')">
+                    <input
+                        matInput
+                        formControlName="username"
+                        placeholder="Enter username"
+                    />
+                    <mat-error
+                        *ngIf="
+                            usernameCtrl.touched &&
+                            usernameCtrl.hasError('required')
+                        "
+                    >
                         Le nom de l'utilisateur est requis
                     </mat-error>
-                    <mat-error *ngIf="usernameCtrl.touched && usernameCtrl.hasError('minlength')">
+                    <mat-error
+                        *ngIf="
+                            usernameCtrl.touched &&
+                            usernameCtrl.hasError('minlength')
+                        "
+                    >
                         Le nom de l'utilisateur doit faire au moins 3 caractères
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="standard"
-                                color="accent">
+                <mat-form-field color="accent">
                     <mat-label>Email</mat-label>
-                    <input matInput
-                           type="email"
-                           formControlName="email"
-                           placeholder="Enter Email">
-                    <mat-error *ngIf="emailCtrl.touched && emailCtrl.hasError('required')">
+                    <input
+                        matInput
+                        type="email"
+                        formControlName="email"
+                        placeholder="Enter Email"
+                    />
+                    <mat-error
+                        *ngIf="
+                            emailCtrl.touched && emailCtrl.hasError('required')
+                        "
+                    >
                         L'email est requis
                     </mat-error>
-                    <mat-error *ngIf="emailCtrl.touched && emailCtrl.hasError('email')">
+                    <mat-error
+                        *ngIf="emailCtrl.touched && emailCtrl.hasError('email')"
+                    >
                         L'email n'est pas valide
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="standard"
-                                color="accent">
+                <mat-form-field color="accent">
                     <mat-label>Password</mat-label>
-                    <input matInput
-                           type="password"
-                           formControlName="password">
-                    <mat-error *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
+                    <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                    />
+                    <mat-error
+                        *ngIf="
+                            passwordCtrl.touched &&
+                            passwordCtrl.hasError('required')
+                        "
+                    >
                         Le mots de passe est requis
                     </mat-error>
-                    <mat-error *ngIf="passwordCtrl.touched && passwordCtrl.hasError('minlength')">
+                    <mat-error
+                        *ngIf="
+                            passwordCtrl.touched &&
+                            passwordCtrl.hasError('minlength')
+                        "
+                    >
                         Le mots de passe doit faire au moins 8 caractères
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="standard"
-                                color="accent">
+                <mat-form-field color="accent">
                     <mat-label>Password confirmation</mat-label>
-                    <input matInput
-                           type="password"
-                           formControlName="passwordRepeat">
-                    <mat-error *ngIf="passwordRepeatCtrl.touched && passwordRepeatCtrl.hasError('required')">
+                    <input
+                        matInput
+                        type="password"
+                        formControlName="passwordRepeat"
+                    />
+                    <mat-error
+                        *ngIf="
+                            passwordRepeatCtrl.touched &&
+                            passwordRepeatCtrl.hasError('required')
+                        "
+                    >
                         La confirmation du mots de passe est requis
                     </mat-error>
-                    <mat-error *ngIf="passwordRepeatCtrl.touched && passwordRepeatCtrl.hasError('mustMatch')">
+                    <mat-error
+                        *ngIf="
+                            passwordRepeatCtrl.touched &&
+                            passwordRepeatCtrl.hasError('mustMatch')
+                        "
+                    >
                         La confirmation du mots de passe n'est pas valide
                     </mat-error>
                 </mat-form-field>
@@ -80,10 +119,12 @@
                 <!--                siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"-->
                 <!--            ></re-captcha>-->
 
-                <button mat-raised-button
-                        color="primary"
-                        type="submit"
-                        [disabled]="userForm.invalid">
+                <button
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                    [disabled]="userForm.invalid"
+                >
                     S'enregistrer
                 </button>
             </form>

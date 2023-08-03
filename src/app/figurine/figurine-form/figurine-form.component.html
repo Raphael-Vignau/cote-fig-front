@@ -5,7 +5,7 @@
                 <form [formGroup]="figurineForm"
                       (ngSubmit)="onSubmit()">
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Nom</mat-label>
                         <input matInput
                                formControlName="name"
@@ -19,9 +19,9 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Tags</mat-label>
-                        <mat-chip-list #chipList aria-label="Tags selection" formArrayName="tags">
+                        <!-- <mat-chip-list #chipList aria-label="Tags selection" formArrayName="tags">
                             <mat-chip *ngFor="let tag of tagsCtrl.value; let i = index"
                                       (removed)="onRemoveTag(i)">
                                 {{tag.name}}
@@ -35,7 +35,7 @@
                                    [matChipInputFor]="chipList"
                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                    (matChipInputTokenEnd)="onAddTag($event)">
-                        </mat-chip-list>
+                        </mat-chip-list> -->
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedTag($event)">
                             <mat-option *ngFor="let tag of allTags" [value]="tag">
                                 {{tag.name}}
@@ -43,7 +43,7 @@
                         </mat-autocomplete>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Description</mat-label>
                         <input matInput
                                name="description"
@@ -54,7 +54,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Éditeur</mat-label>
                         <input matInput
                                name="publisher"
@@ -65,7 +65,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Artiste</mat-label>
                         <input matInput
                                name="artist"
@@ -76,7 +76,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Jeu</mat-label>
                         <input matInput
                                name="game"
@@ -86,7 +86,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Matière</mat-label>
                         <input matInput
                                name="material"
@@ -96,7 +96,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field>
                         <mat-label>Échelle</mat-label>
                         <input matInput
                                name="scale"
@@ -107,7 +107,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
+                    <mat-form-field >
                         <mat-label>Prix à la sortie</mat-label>
                         <input matInput
                                type="number"
@@ -118,8 +118,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard"
-                                    color="accent">
+                    <mat-form-field color="accent">
                         <mat-label>Année de sortie</mat-label>
                         <input matInput
                                type="number"
